@@ -277,6 +277,17 @@ let g:neocomplete#enable_smart_case = 1
 "插件: vim-move
 let g:move_key_modifier = 'S'
 
+"插件: YouCompleteMe
+let g:ycm_key_list_select_completion = ['<tab>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+
+
+"插件: Ultisnips
+let g:UltiSnipsExpandTrigger="<s-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+
 if has('clipboard')
     if has('unnamedplus')
         set clipboard=unnamedplus
