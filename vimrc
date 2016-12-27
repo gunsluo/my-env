@@ -23,6 +23,8 @@ set fileformats=unix
 "set cuc
 set backspace=2 " make backspace work like most other apps
 set backspace=indent,eol,start
+set statusline=%r\ %F%m%h%w\ [%{strlen(&fenc)?&fenc:'none'},%{&ff}]%y\ \ \ %=[L\ %l,R\ %c,T\ %L]\ %P
+set laststatus=2    " 启动显示状态行(1),总是显示状态行(2)
 
 "功能: 语法高亮
 "用法: 
@@ -70,12 +72,15 @@ Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'myusuf3/numbers.vim'
-Plug 'gunsluo/vim-javafmt'
+"Plug 'gunsluo/vim-javafmt'
 Plug 'xuhdev/indent-java.vim'
 Plug 'mileszs/ack.vim'
 Plug 'matze/vim-move'
 "Plug 'artur-shaik/vim-javacomplete2'
 "Plug 'scrooloose/syntastic'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
 
 "
 " original repos on github
@@ -278,12 +283,12 @@ let g:neocomplete#enable_smart_case = 1
 let g:move_key_modifier = 'S'
 
 "插件: YouCompleteMe
-let g:ycm_key_list_select_completion = ['<tab>', '<Down>']
+let g:ycm_key_list_select_completion = ['<s-tab>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
 
 
 "插件: Ultisnips
-let g:UltiSnipsExpandTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
