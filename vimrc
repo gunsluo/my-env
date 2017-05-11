@@ -30,6 +30,9 @@ set laststatus=2    " 启动显示状态行(1),总是显示状态行(2)
 "用法: 
 syntax enable
 "syntax on
+"linux set
+"let g:solarized_termcolors=256
+"set t_Co=256 
 set background=dark
 colorscheme solarized
 "colorscheme desert
