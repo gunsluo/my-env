@@ -43,14 +43,13 @@ call plug#begin('~/.vim/plugged')
 
 " let Vundle manage Vundle
 "my Bundle here:
-Plug 'gmarik/vundle'
-Plug 'taglist.vim'
-Plug 'winmanager'
+Plug 'vim-scripts/taglist.vim'
+Plug 'vim-scripts/winmanager'
 "Plug 'cscope-quickfix'
 "Plug 'minibufexpl.vim'
-Plug 'visual-mark'
+Plug 'vim-scripts/visual-mark'
 Plug 'gunsluo/a.vim'
-Plug 'DoxygenToolkit.vim'
+Plug 'vim-scripts/DoxygenToolkit.vim'
 
 Plug 'scrooloose/nerdtree'
 Plug 'rking/ag.vim'
@@ -418,4 +417,3 @@ augroup plugin_commentary
 augroup END
 
 " }}}
-
