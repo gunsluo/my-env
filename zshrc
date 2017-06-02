@@ -91,12 +91,13 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export GOROOT=$HOME/go
 export GOPATH=$HOME/gopath
 export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$RABBITMQ_HOME/sbin
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 
 function setproxy() {
     export {http,https,ftp}_proxy="http://localhost:8016"
 }
+
 function unsetproxy() {
     unset {http,https,ftp}_proxy
 }
