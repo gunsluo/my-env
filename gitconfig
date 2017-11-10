@@ -2,7 +2,7 @@
 	st = status -sb
 	br = branch -vv
     ds = diff --staged
-    standup = log --since '1 day ago' --oneline --author sebastian@kusnier.net
+    standup = log --since '1 day ago' --oneline --author gunsluo@gmail.com
     lastweek = log --since '1 week ago' --oneline
     ci = commit
     amend = commit --amend -C HEAD
@@ -26,7 +26,7 @@
     # Show files ignored by git:
     ign = ls-files -o -i --exclude-standard
 [user]
-	name = jerrylou
+	name = luoji
 	email = gunsluo@gmail.com
 [core]
 	editor = /usr/local/bin/vim
