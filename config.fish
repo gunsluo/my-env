@@ -7,6 +7,8 @@ set -g -x GOROOT $HOME/go
 set -g -x GOPATH $HOME/gopath
 set -g -x GOBIN $GOPATH/bin
 set -g -x PATH $GOROOT/bin $GOPATH/bin $PATH
+set -g -x LC_ALL en_US.UTF-8
+set -g -x LANG en_US.UTF-8
 
 function setproxy
     export {http,https,ftp}_proxy="http://localhost:8016"
