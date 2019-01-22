@@ -300,12 +300,12 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 
-if has('clipboard')
-    if has('unnamedplus')
-        set clipboard=unnamedplus
-    else
-        set clipboard=unnamed
-    endif
+if has("clipboard")
+  set clipboard=unnamed " copy to the system clipboard
+
+  if has("unnamedplus") " X11 support
+    set clipboard+=unnamedplus
+  endif
 endif
 
 set noshowmode
@@ -444,3 +444,6 @@ augroup END
 
 autocmd BufRead,BufNewFile *.go setlocal spell
 set complete+=kspell
+
+" fix python version
+let g:ycm_path_to_python_interpreter="/usr/local/bin/python3.7"
