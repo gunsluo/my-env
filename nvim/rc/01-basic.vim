@@ -33,3 +33,7 @@ set laststatus=2    " 启动显示状态行(1),总是显示状态行(2)
 syntax enable
 set background=dark
 colorscheme NeoSolarized
+
+"set custom leader
+let mapleader="\<Space>"
+let g:mapleader="\<Space>"
