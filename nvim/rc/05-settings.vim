@@ -7,7 +7,7 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-"let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "goimports"
 "let g:go_fmt_fail_silently = 1
 "let g:go_fmt_autosave = 0
 let g:go_play_open_browser = 0
@@ -46,26 +46,31 @@ nnoremap  <leader>8 :call functions#tab_buf_switch(8)<cr>
 " tab or buf 9
 nnoremap  <leader>9 :call functions#tab_buf_switch(9)<cr>
 
+
+" tagbar 
+nmap <F8> :TagbarToggle<CR>
+
+
+" NERDTree
+" autocmd vimenter * NERDTree
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+map <C-n> :NERDTreeToggle<CR>
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
+
+
 " tab navigation like zsh
 :nmap <leader>h :bp<CR>
 :imap <leader>h <C-c>:bp<CR>
 :nmap <leader>l :bn<CR>
 :imap <leader>l <C-c>:bn<CR>
-:nmap <leader>w :bd<CR>:bn<CR>:bp<CR>
-:imap <leader>w <C-c>:bd<CR>:bn<CR>:bp<CR>
+:nmap <leader>w :call functions#tab_buf_close()<CR>
+:imap <leader>w <C-c>:call functions#tab_buf_close()<CR>
 
-
-" NERDTree
-let NERDTreeQuitOnOpen = 0
-autocmd StdinReadPre * let s:std_in=1
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-map <C-n> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
 " ctrlp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
-
-" tagbar 
-nmap <F8> :TagbarToggle<CR>
 

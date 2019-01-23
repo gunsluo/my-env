@@ -1,6 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'iCyMind/NeoSolarized'
+Plug 'vim-scripts/visual-mark'
 Plug 'airblade/vim-gitgutter'
 Plug 'mileszs/ack.vim'
 Plug 'vim-airline/vim-airline'
