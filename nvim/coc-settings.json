@@ -1,11 +1,16 @@
 {
+  "coc.preferences.diagnostic.displayByAle": true, 
+  "coc.preferences.noselect": true, 
+  "coc.preferences.timeout": 1000, 
   "languageserver": {
     "golang": {
-      "command": "go-langserver",
-      "filetypes": ["go"],
+      "command": "go-langserver", 
+      "filetypes": [
+        "go"
+      ], 
       "initializationOptions": {
-        "gocodeCompletionEnabled": true,
-        "diagnosticsEnabled": true,
+        "gocodeCompletionEnabled": true, 
+        "diagnosticsEnabled": false, 
         "lintTool": "golint"
       }
     }

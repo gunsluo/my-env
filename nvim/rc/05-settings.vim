@@ -1,16 +1,16 @@
-
 filetype plugin indent on
 
 "插件: Vim-go
+let g:go_fmt_command = "goimports"
+let g:go_highlight_types = 1
 let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
-let g:go_fmt_command = "goimports"
-"let g:go_fmt_fail_silently = 1
-"let g:go_fmt_autosave = 0
-let g:go_play_open_browser = 0
+"let g:go_snippet_engine = "neosnippet"
+
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
