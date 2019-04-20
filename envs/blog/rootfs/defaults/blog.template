@@ -1,0 +1,22 @@
+
+    server {
+        listen       80;
+        server_name  luoji.live;
+
+	return 301 https://luoji.live$request_uri;
+    }
+
+    server {
+        listen       443 ssl;
+        server_name  luoji.live;
+
+        ssl_certificate /etc/letsencrypt/live/luoji.live/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/luoji.live/privkey.pem;
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+        ssl_session_cache shared:SSL:10m;
+        ssl_session_timeout 10m;
+
+        root         /usr/share/nginx/html;
+        index        index.html index.htm;
+    }
+
