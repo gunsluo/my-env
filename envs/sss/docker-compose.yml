@@ -1,0 +1,10 @@
+version: "3"
+services:
+
+  shadowsocks-server:
+    image: gunsluo/shadowsocks
+    command: "/usr/local/bin/shadowsocks-server -c /config.json"
+    volumes:
+      - ./config.json:/config.json
+    ports:
+      - "56000:56000"
