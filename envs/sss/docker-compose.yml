@@ -3,6 +3,7 @@ services:
 
   shadowsocks-server:
     image: gunsluo/shadowsocks
+    restart: always
     command: "/usr/local/bin/shadowsocks-server -c /config.json"
     volumes:
       - ./config.json:/config.json
