@@ -1,4 +1,4 @@
-FROM golang:1.12.3-alpine3.9 as builder
+FROM golang:1.12.7-alpine3.9 as builder
 
 RUN apk add -u --no-cache git
 
