@@ -1,0 +1,10 @@
+version: "3"
+services:
+
+  shadowsocks:
+    image: gunsluo/shadowsocks-go
+    container_name: shadowsocks
+    restart: always
+    command: "-verbose -s 'ss://chacha20-ietf-poly1305:lu@jihandsome@[0.0.0.0]:36289'"
+    ports:
+      - "36289:36289"
