@@ -2,16 +2,20 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'iCyMind/NeoSolarized'
 Plug 'vim-scripts/visual-mark'
-Plug 'airblade/vim-gitgutter'
 Plug 'mileszs/ack.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 Plug 'kien/ctrlp.vim'
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 
 "Plugins for golang
-Plug 'fatih/vim-go', { 'for': 'go' }
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+"Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+"Plugins for proto
+Plug 'dense-analysis/ale'
+Plug 'bufbuild/vim-buf'
 
 call plug#end()

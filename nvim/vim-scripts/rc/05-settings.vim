@@ -1,7 +1,8 @@
 filetype plugin indent on
 
 "插件: Vim-go
-let g:go_fmt_command = "goimports"
+let g:go_fmt_command = "gopls"
+let g:go_highlight_fields = 1 
 let g:go_highlight_types = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_function_calls = 1
@@ -9,7 +10,12 @@ let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+"let g:go_fmt_autosave = 1
+"let g:go_auto_type_info = 1
+"let g:go_auto_sameids = 1
 "let g:go_snippet_engine = "neosnippet"
+"let g:go_snippet_engine = "automatic"
+let g:syntastic_go_checkers = ['golint', 'govet']
 
 au FileType go nmap <leader>r <Plug>(go-run)
 au FileType go nmap <leader>b <Plug>(go-build)
@@ -73,4 +79,16 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 " ctrlp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+
+" gitgutter
+let g:gitgutter_enabled = 0
+:nmap <leader>gt :GitGutterToggle<CR>
+:imap <leader>gt <C-c>:GitGutterToggle<CR>
+
+" vim-buf
+let g:ale_linters = {
+\   'proto': ['buf-lint',],
+\}
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_linters_explicit = 1
 
