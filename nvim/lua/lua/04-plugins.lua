@@ -42,5 +42,32 @@ return require('packer').startup(function(use)
 	  require('plug-cfgs/treesitter').config(),
   }
 
+	-- LSP
+	use 'neovim/nvim-lspconfig'
+	use {
+		'williamboman/nvim-lsp-installer',
+	  require('plug-cfgs/lsp-installer').config(),
+	}
+
+	use {
+		'hrsh7th/cmp-vsnip',
+		'hrsh7th/vim-vsnip',
+	}
+
+	use {
+		'hrsh7th/nvim-cmp',
+	  requires = {
+		  'onsails/lspkind-nvim',
+			'hrsh7th/cmp-buffer',
+			'hrsh7th/cmp-path',
+	  },
+	  require('plug-cfgs/nvim-cmp').config(),
+	}
+
+	use 'hrsh7th/cmp-nvim-lsp'
+
+	use {
+		'ray-x/lsp_signature.nvim',
+	}
 end)
 

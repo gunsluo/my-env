@@ -8,11 +8,14 @@ vim.cmd('filetype plugin indent on')
 vim.cmd('syntax on')
 
 --set_option('tabstop', 2)
+--set_option('shiftwidth', 2)
+--set_option('softtabstop', 2)
 vim.o.tabstop = 2
-set_option('softtabstop', 2)
-set_option('shiftwidth', 2)
+vim.o.shiftwidth = 2
+vim.o.softtabstop = 2
 set_option('expandtab', true)
 set_option('autoindent', true)
+set_option('cindent', true)
 set_option('smarttab', true)
 
 set_option('incsearch', true)

@@ -6,6 +6,7 @@ end
 
 local function config()
 	require("nvim-tree").setup()
+	require('nvim-tree').toggle(true, true)
 end
 
 return {
