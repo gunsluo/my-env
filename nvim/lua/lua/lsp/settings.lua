@@ -62,9 +62,25 @@ local lsp_flags = {
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
-local function config ()
+
+local formatting_hook = function(client, bufnr, options)
+  if options and options.disable_formatting then
+    print(options.disable_formatting)
+    -- client.server_capabilities.document_formatting = false -- 0.7 and earlier 
+    -- client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
+    -- client.server_capabilities.documentRangeFormattingProvider = false
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+  end
+end
+
+local function config (options)
   return {
-    on_attach = on_attach,
+    -- on_attach = on_attach,
+    on_attach = function(client, bufnr)
+      formatting_hook(client, bufnr, options)
+      on_attach(client, bufnr)
+    end,
     flags = lsp_flags,
     capabilities = capabilities,
   }

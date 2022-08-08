@@ -89,9 +89,14 @@ return require('packer').startup(function(use)
   }
 
   use {
-    "akinsho/toggleterm.nvim",
+    'akinsho/toggleterm.nvim',
     tag = 'v2.*',
 	  require('plug-cfgs/toggleterm').config()
+  }
+
+  use {
+    'jose-elias-alvarez/null-ls.nvim',
+	  require('plug-cfgs/null-ls').config()
   }
 
 end)
