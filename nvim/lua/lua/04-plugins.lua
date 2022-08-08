@@ -69,5 +69,23 @@ return require('packer').startup(function(use)
 	use {
 		'ray-x/lsp_signature.nvim',
 	}
+
+  use {
+    'akinsho/bufferline.nvim', 
+    tag = "v2.*", 
+    requires = 'kyazdani42/nvim-web-devicons',
+	  require('plug-cfgs/bufferline').setup(),
+	  require('plug-cfgs/bufferline').config()
+  }
+
+  use {
+    'terrortylor/nvim-comment',
+	  require('plug-cfgs/nvim-comment').config()
+	}
+
+  use {
+    'Shatur/neovim-session-manager',
+	  require('plug-cfgs/nvim-session-manager').config()
+  }
 end)
 

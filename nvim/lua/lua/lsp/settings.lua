@@ -15,7 +15,7 @@ local on_attach = function(client, bufnr)
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+  --vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   --vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   --vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
@@ -31,6 +31,7 @@ local on_attach = function(client, bufnr)
   --vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 
+  vim.keymap.set('n', 'gb', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', '<Cmd>Telescope lsp_definitions<CR>', bufopts)
   vim.keymap.set('n', 'gi', '<Cmd>Telescope lsp_implementations<CR>', bufopts)
   vim.keymap.set('n', 'gy', '<Cmd>Telescope lsp_type_definitions<CR>', bufopts)

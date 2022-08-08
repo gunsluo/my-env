@@ -7,6 +7,7 @@ vim.api.nvim_set_keymap('n', '<leader>da', '<Cmd>Telescope diagnostics<CR>', { n
 vim.api.nvim_set_keymap('n', '<leader>ma', '<Cmd>Telescope vim_bookmarks all<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', 'ma', '<Cmd>Telescope vim_bookmarks current_file<CR>', { noremap = true })
 
+vim.api.nvim_set_keymap('n', '<leader>fo', '<Cmd>Telescope oldfiles<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>fp', '<Cmd>Telescope projects<CR>', { noremap = true })
 
 local function config ()
