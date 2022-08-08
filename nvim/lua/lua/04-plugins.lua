@@ -87,5 +87,12 @@ return require('packer').startup(function(use)
     'Shatur/neovim-session-manager',
 	  require('plug-cfgs/nvim-session-manager').config()
   }
+
+  use {
+    "akinsho/toggleterm.nvim",
+    tag = 'v2.*',
+	  require('plug-cfgs/toggleterm').config()
+  }
+
 end)
 
