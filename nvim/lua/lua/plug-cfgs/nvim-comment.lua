@@ -1,8 +1,8 @@
 local function config()
   require('nvim_comment').setup({
     comment_empty = false,
-    line_mapping = '<leader>zz',
-    operator_mapping = '<leader>z'
+    line_mapping = '<leader>//',
+    operator_mapping = '<leader>/'
   })
 end
 
