@@ -65,7 +65,6 @@ capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local formatting_hook = function(client, bufnr, options)
   if options and options.disable_formatting then
-    print(options.disable_formatting)
     -- client.server_capabilities.document_formatting = false -- 0.7 and earlier 
     -- client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
     -- client.server_capabilities.documentRangeFormattingProvider = false
