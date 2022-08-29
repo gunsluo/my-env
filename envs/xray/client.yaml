@@ -1,0 +1,44 @@
+#---------------------------------------------------#
+## 配置文件需要放置在 $HOME/.config/clash/*.yaml
+
+
+# (HTTP and SOCKS5 in one port)
+mixed-port: 8016
+# RESTful API for clash
+external-controller: 127.0.0.1:9090
+allow-lan: false
+mode: rule
+log-level: warning
+
+proxies:
+  - name: Bandwagon(trojan)
+    type: trojan
+    server: server
+    port: 443
+    password: password
+    udp: true
+    alpn:
+      - h2
+      - http/1.1
+    # sni: example.com # aka server name
+    # skip-cert-verify: true
+
+  - name: Bandwagon(ss)
+    type: ss
+    server: server
+    port: 33689
+    cipher: chacha20-ietf-poly1305
+    password: password
+    udp: true
+
+proxy-groups:
+  - name: 🇺🇲 美国节点
+    type: select
+    proxies:
+      - Bandwagon(trojan)
+      - Bandwagon(ss)
+
+rules:
+  - DOMAIN-SUFFIX,google.com,🇺🇲 美国节点
+  - GEOIP,CN,DIRECT
+  - MATCH,🇺🇲 美国节点
