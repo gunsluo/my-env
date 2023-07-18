@@ -7,6 +7,7 @@ sandwich -cert-file=/root/.acme.sh/mirrors.luoji.live/fullchain.cer -private-key
 acme.sh --issue --dns -d mirrors.luoji.live --yes-I-know-dns-manual-mode-enough-go-ahead-please
 
 acme.sh --issue -d luojis.com -d www.luoji.com -w /root/.acme.sh/luojis.com
+acme.sh --issue -d luojis.com -d www.luojis.com --nginx
 
 acme.sh --issue --dns -d luojis.com -d www.luojis.com --yes-I-know-dns-manual-mode-enough-go-ahead-please
 acme.sh --renew -d luojis.com -d www.luojis.com --yes-I-know-dns-manual-mode-enough-go-ahead-please
