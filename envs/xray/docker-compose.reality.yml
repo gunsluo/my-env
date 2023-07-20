@@ -5,8 +5,10 @@ services:
     image: teddysun/xray:1.8.1
     container_name: xray
     restart: always
+    command: >
+      /usr/bin/xray -config /etc/xray/config.json
     volumes:
-      - ./config.json:/etc/xray/config.json
+      - ./config:/etc/xray
       - /dev/shm:/dev/shm:rw
     ports:
       - "443:443"
