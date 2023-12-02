@@ -1,6 +1,6 @@
 local function setup()
   vim.api.nvim_set_keymap('n', '<C-]>', '<Cmd>BufferLineCycleNext<CR>', { noremap = true, silent = true })
-  vim.api.nvim_set_keymap('n', '<C-[>', '<Cmd>BufferLineCyclePrev<CR>', { noremap = true, silent = true })
+  -- vim.api.nvim_set_keymap('n', '<C-[>', '<Cmd>BufferLineCyclePrev<CR>', { noremap = true, silent = true })
   vim.api.nvim_set_keymap('n', '<C-g>', '<Cmd>BufferLinePick<CR>', { noremap = true, silent = true })
 
   vim.api.nvim_set_keymap('n', '<leader>1', [[<Cmd>lua require('bufferline').go_to_buffer(1, true)<CR>]], { noremap = true, silent = true })
