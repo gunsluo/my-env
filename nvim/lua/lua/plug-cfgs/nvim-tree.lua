@@ -40,7 +40,11 @@ local function config()
     },
 	})
 
-	require('nvim-tree.events').on_file_created(function(file) vim.cmd("edit " .. file.fname) end)
+
+  local api = require("nvim-tree.api")
+  api.events.subscribe(api.events.Event.FileCreated, function(file)
+    vim.cmd("edit " .. file.fname)
+end)
 	--require('nvim-tree').toggle(true, true)
   
   vim.api.nvim_create_autocmd('BufEnter', {

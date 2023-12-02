@@ -29,7 +29,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
   --vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
   --vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+  -- vim.keymap.set('n', '<space>f', vim.lsp.buf.format, bufopts)
 
   vim.keymap.set('n', 'gb', vim.lsp.buf.declaration, bufopts)
   vim.keymap.set('n', 'gd', '<Cmd>Telescope lsp_definitions<CR>', bufopts)
@@ -39,12 +39,15 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gr', '<Cmd>Telescope lsp_references<CR>', bufopts)
   vim.keymap.set('n', '<leader>sd', '<Cmd>Telescope lsp_document_symbols<CR>', bufopts)
 
-	-- Set some keybinds conditional on server capabilities
-  if client.resolved_capabilities.document_formatting then
-    vim.keymap.set("n", "<leader>F", "<Cmd>lua vim.lsp.buf.formatting()<CR>", bufopts)
-  elseif client.resolved_capabilities.document_range_formatting then
-    vim.keymap.set("n", "<leader>F", "<Cmd>lua vim.lsp.buf.range_formatting()<CR>", bufopts)
-  end
+  vim.keymap.set('n', '<leader>F', function()
+    vim.lsp.buf.format { async = true }
+  end, bufopts)
+
+
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    command = 'lua vim.lsp.buf.format()',
+    nested = true,
+  })
 
 	require('lsp_signature').on_attach({
 		bind = true,
@@ -60,24 +63,25 @@ local lsp_flags = {
 }
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 
 local formatting_hook = function(client, bufnr, options)
   if options and options.disable_formatting then
-    -- client.server_capabilities.document_formatting = false -- 0.7 and earlier 
-    -- client.server_capabilities.documentFormattingProvider = false -- 0.8 and later
-    -- client.server_capabilities.documentRangeFormattingProvider = false
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
   end
 end
+
+-- local function keymap(mode, keys, fn, desc)
+--   vim.keymap.set(mode, keys, fn, { buffer = bufnr, noremap = true, silent = true, desc = desc })
+-- end
 
 local function config (options)
   return {
     -- on_attach = on_attach,
     on_attach = function(client, bufnr)
-      formatting_hook(client, bufnr, options)
+      -- formatting_hook(client, bufnr, options)
       on_attach(client, bufnr)
     end,
     flags = lsp_flags,
