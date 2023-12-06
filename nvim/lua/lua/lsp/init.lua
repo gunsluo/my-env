@@ -1,4 +1,5 @@
 require 'lsp.go'
+require 'lsp.lua'
 require 'lsp.ts'
 require 'lsp.tpl'
 require 'lsp.json'

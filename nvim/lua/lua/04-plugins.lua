@@ -7,59 +7,17 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use { 
-    "ellisonleao/gruvbox.nvim",
-    require('plug-cfgs/gruvbox').config(),
-  }
-
   use {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- optional
-    },
-    require('plug-cfgs/nvim-tree').setup(),
-    require('plug-cfgs/nvim-tree').config(),
+    "ellisonleao/gruvbox.nvim",
   }
 
   use 'MattesGroeger/vim-bookmarks'
 
-  use {
-    "ahmedkhalf/project.nvim",
-    require('plug-cfgs/project').config(),
-  }
-
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.4',
-  -- or                            , branch = '0.1.x',
-    requires = { {
-      'nvim-lua/plenary.nvim',
-      'nvim-telescope/telescope-fzy-native.nvim',
-      'nvim-telescope/telescope-live-grep-args.nvim',
-      'tom-anders/telescope-vim-bookmarks.nvim',
-    } },
-    require('plug-cfgs/telescope').config(),
-  }
-
-  use { 
-    'nvim-treesitter/nvim-treesitter',
-    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
-    require('plug-cfgs/treesitter').config(),
-  }
-
   -- LSP
   use {
     'williamboman/mason.nvim',
-    require('plug-cfgs/mason').config(),
-  }
-  use {
     'williamboman/mason-lspconfig.nvim',
-    require('plug-cfgs/mason-lspconfig').config(),
-  }
-  use 'neovim/nvim-lspconfig'
-
-  use {
-    'hrsh7th/cmp-vsnip',
-    'hrsh7th/vim-vsnip',
+    'neovim/nvim-lspconfig',
   }
 
   use {
@@ -69,9 +27,12 @@ return require('packer').startup(function(use)
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
     },
-    require('plug-cfgs/nvim-cmp').config(),
   }
 
+  use {
+    'hrsh7th/cmp-vsnip',
+    'hrsh7th/vim-vsnip',
+  }
 
   use 'hrsh7th/cmp-nvim-lsp'
 
@@ -80,27 +41,59 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'akinsho/bufferline.nvim', 
-    tag = "*", 
-    requires = 'nvim-tree/nvim-web-devicons',
-    require('plug-cfgs/bufferline').setup(),
-    require('plug-cfgs/bufferline').config()
+    'terrortylor/nvim-comment',
   }
 
   use {
-    'terrortylor/nvim-comment',
-    require('plug-cfgs/nvim-comment').config()
+    'nvim-telescope/telescope.nvim', tag = '0.1.5',
+    requires = { {
+      'nvim-lua/plenary.nvim',
+      'nvim-telescope/telescope-fzy-native.nvim',
+      'nvim-telescope/telescope-live-grep-args.nvim',
+      'tom-anders/telescope-vim-bookmarks.nvim',
+    } },
+  }
+
+  use { 'akinsho/bufferline.nvim', tag = "*", requires = 'nvim-tree/nvim-web-devicons' }
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
   }
 
   use {
     'Shatur/neovim-session-manager',
-    require('plug-cfgs/nvim-session-manager').config()
   }
 
   use {
-    'akinsho/toggleterm.nvim',
-    tag = '*',
-	  require('plug-cfgs/toggleterm').config()
+    "ahmedkhalf/project.nvim",
   }
 
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
+  }
+
+
+  require('plug-cfgs/gruvbox').config()
+  require('plug-cfgs/mason').config()
+  require('plug-cfgs/mason-lspconfig').config()
+  require('plug-cfgs/nvim-cmp').config()
+  require('plug-cfgs/nvim-comment').config()
+  require('plug-cfgs/telescope').setup()
+  require('plug-cfgs/telescope').config()
+
+  require('plug-cfgs/bufferline').setup()
+  require('plug-cfgs/bufferline').config()
+  require('plug-cfgs/nvim-tree').setup()
+  require('plug-cfgs/nvim-tree').config()
+  require('plug-cfgs/nvim-session-manager').config()
+  require('plug-cfgs/project').config()
+
+  -- re-install to run TSInstall
+  require('plug-cfgs/treesitter').config()
 end)

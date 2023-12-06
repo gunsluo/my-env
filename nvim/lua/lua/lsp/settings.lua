@@ -14,12 +14,13 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   --vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
   --vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
   --vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
   vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+
   vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
   vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
   vim.keymap.set('n', '<space>wl', function()
@@ -43,18 +44,17 @@ local on_attach = function(client, bufnr)
     vim.lsp.buf.format { async = true }
   end, bufopts)
 
-
   vim.api.nvim_create_autocmd('BufWritePre', {
     command = 'lua vim.lsp.buf.format()',
     nested = true,
   })
 
-	require('lsp_signature').on_attach({
-		bind = true,
-		handler_opts = {
-			border = "rounded"
-		},
-	}, bufopts)
+  require "lsp_signature".on_attach({
+    bind = true, -- This is mandatory, otherwise border config won't get registered.
+    handler_opts = {
+      border = "rounded"
+    }
+  }, bufnr)
 end
 
 local lsp_flags = {
@@ -64,12 +64,16 @@ local lsp_flags = {
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 
 local formatting_hook = function(client, bufnr, options)
   if options and options.disable_formatting then
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
+  else
+    client.server_capabilities.documentFormattingProvider = true
+    client.server_capabilities.documentRangeFormattingProvider = true
   end
 end
 
@@ -77,11 +81,11 @@ end
 --   vim.keymap.set(mode, keys, fn, { buffer = bufnr, noremap = true, silent = true, desc = desc })
 -- end
 
-local function config (options)
+local function config(options)
   return {
     -- on_attach = on_attach,
     on_attach = function(client, bufnr)
-      -- formatting_hook(client, bufnr, options)
+      formatting_hook(client, bufnr, options)
       on_attach(client, bufnr)
     end,
     flags = lsp_flags,
@@ -92,4 +96,3 @@ end
 return {
   config = config,
 }
-

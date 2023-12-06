@@ -1,3 +1,8 @@
-require'lspconfig'.html.setup{}
+local lsp_settings = require 'lsp.settings'
 
-require'lspconfig'.cssls.setup{}
+-- vim.lsp.set_log_level("debug")
+require('lspconfig').html.setup(lsp_settings.config({
+}))
+
+require('lspconfig').cssls.setup(lsp_settings.config({
+}))

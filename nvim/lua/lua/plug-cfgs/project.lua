@@ -1,6 +1,6 @@
 local function config()
-	require("project_nvim").setup({
-  -- Manual mode doesn't automatically change your root directory, so you have
+  require("project_nvim").setup({
+    -- Manual mode doesn't automatically change your root directory, so you have
     -- the option to manually do so using `:ProjectRoot` command.
     manual_mode = false,
 
@@ -8,11 +8,11 @@ local function config()
     -- lsp, while **"pattern"** uses vim-rooter like glob pattern matching. Here
     -- order matters: if one is not detected, the other is used as fallback. You
     -- can also delete or rearangne the detection methods.
-    detection_methods = { "pattern", "lsp" },
+    detection_methods = { "lsp", "pattern" },
 
     -- All the patterns used to detect root dir, when **"pattern"** is in
     -- detection_methods
-    patterns = { "go.mod", "package.json", ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile" },
+    patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "Makefile", "package.json" },
 
     -- Table of lsp clients to ignore by name
     -- eg: { "efm", ... }
@@ -39,6 +39,10 @@ local function config()
     -- telescope
     datapath = vim.fn.stdpath("data"),
   })
+
+  -- install telescope first
+  vim.api.nvim_set_keymap('n', '<leader>fp', '<Cmd>Telescope projects<CR>', { noremap = true })
+  require('telescope').load_extension('projects')
 end
 
 return {

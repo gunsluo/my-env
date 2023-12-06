@@ -1,4 +1,3 @@
-
 if has("clipboard")
   set clipboard=unnamed " copy to the system clipboard
 
