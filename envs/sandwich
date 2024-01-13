@@ -15,3 +15,6 @@ acme.sh --renew -d luojis.com -d www.luojis.com --yes-I-know-dns-manual-mode-eno
 
 更新证书： acme.sh --renew -d mirrors.luoji.live --yes-I-know-dns-manual-mode-enough-go-ahead-please
 强制更新：/root/.acme.sh/acme.sh --renew  -d mirrors.luoji.live --force
+
+// auto
+acme.sh --issue --dns dns_namecom -d luojis.com -d www.luojis.com

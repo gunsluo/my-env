@@ -41,7 +41,7 @@ return require('packer').startup(function(use)
   }
 
   use {
-    'terrortylor/nvim-comment',
+    'numToStr/Comment.nvim',
   }
 
   use {
@@ -83,7 +83,7 @@ return require('packer').startup(function(use)
   require('plug-cfgs/mason').config()
   require('plug-cfgs/mason-lspconfig').config()
   require('plug-cfgs/nvim-cmp').config()
-  require('plug-cfgs/nvim-comment').config()
+  require('plug-cfgs/comment').config()
   require('plug-cfgs/telescope').setup()
   require('plug-cfgs/telescope').config()
 

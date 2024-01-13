@@ -87,6 +87,23 @@ local function config(options)
     on_attach = function(client, bufnr)
       formatting_hook(client, bufnr, options)
       on_attach(client, bufnr)
+
+      -- local active_clients = vim.lsp.get_active_clients()
+      -- if client.name == 'denols' then
+      --   for _, client_ in pairs(active_clients) do
+      --     -- stop tsserver if denols is already active
+      --     if client_.name == 'tsserver' then
+      --       client_.stop()
+      --     end
+      --   end
+      -- elseif client.name == 'tsserver' then
+      --   for _, client_ in pairs(active_clients) do
+      --     -- prevent tsserver from starting if denols is already active
+      --     if client_.name == 'denols' then
+      --       client.stop()
+      --     end
+      --   end
+      -- end
     end,
     flags = lsp_flags,
     capabilities = capabilities,
