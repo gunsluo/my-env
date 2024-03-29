@@ -1,8 +1,0 @@
-
-KCP Client: 
-nohup kcptun -r SRV_IP:15600 -l :56000 -mode fast3 -nocomp -sockbuf 16777217 --sndwnd 1024 --rcvwnd 1024 --key LUOJIHAIDAO --crypt salsa20  >/dev/null 2>&1 &
-
-KCP Server: 
-nohup ./kcptun-server -t 127.0.0.1:56000 -l :15600 -mode fast3 -nocomp -sockbuf 16777217 --sndwnd 1024 --rcvwnd 1024 --key LUOJIHAIDAO --crypt salsa20 >/dev/null 2>&1 &
-
-
