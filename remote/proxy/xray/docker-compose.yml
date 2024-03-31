@@ -2,13 +2,13 @@ version: "3"
 services:
 
   shadowsocks-server:
-    image: teddysun/xray:1.5.10
+    image: teddysun/xray:1.8.1
     container_name: xray
     restart: always
+    command: >
+      /usr/bin/xray -config /etc/xray/config.json
     volumes:
-      - ./config.json:/etc/xray/config.json
-      - /root/.acme.sh/a.com/fullchain.cer:/cert/fullchain.cer
-      - /root/.acme.sh/a.com/a.com.key:/cert/a.com.key
+      - ./config:/etc/xray
       - /dev/shm:/dev/shm:rw
     ports:
       - "443:443"

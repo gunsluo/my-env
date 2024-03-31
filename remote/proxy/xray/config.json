@@ -4,13 +4,62 @@
   },
   "inbounds": [
     {
-      "port": 9000,
-      "protocol": "trojan",
+      "listen": "0.0.0.0",
+      "port": 34375,
+      "protocol": "vless",
       "settings": {
         "clients": [
           {
-            "password": "password",
-            "email": "@gmail.com"
+            "id": "3e9605b4-711b-4c29-aa4a-5b9c4c3b4da7",
+            "flow": "xtls-rprx-vision"
+          }
+        ],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "show": true,
+          "dest": "luojis.com:443",
+          "xver": 0,
+          "maxTimeDiff": 0,
+          "minClientVer": "",
+          "serverNames": [
+            "luojis.com"
+          ],
+          "privateKey": "key",
+          "shortIds": [
+            "52",
+            "5212",
+            "521212"
+          ]
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+    {
+      "listen": "0.0.0.0",
+      "port": 443,
+      "protocol": "vless",
+      "settings": {
+        "clients": [
+          {
+            "id": "3e9605b4-711b-4c29-aa4a-5b9c4c3b4da7",
+            "flow": "xtls-rprx-vision"
+          }
+        ],
+        "decryption": "none",
+        "fallbacks": [
+          {
+            "dest": 8388
           }
         ]
       },
@@ -21,13 +70,42 @@
           "alpn": [
             "http/1.1"
           ],
+          "minVersion": "1.2",
           "certificates": [
             {
-              "certificateFile": "/cert/fullchain.cer",
-              "keyFile": "/cert/private.key"
+              "certificateFile": "/root/.acme.sh/luojis.com_ecc/fullchain.cer",
+              "keyFile": "/root/.acme.sh/luojis.com_ecc/luojis.com.key"
             }
           ]
         }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls"
+        ]
+      }
+    },
+    {
+      "port": 8388,
+      "listen": "127.0.0.1",
+      "protocol": "trojan",
+      "settings": {
+        "clients": [
+          {
+            "password": "password"
+          }
+        ],
+        "fallbacks": [
+          {
+            "dest": 80
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "none"
       }
     }
   ],
