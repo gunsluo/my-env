@@ -1,0 +1,9 @@
+services:
+  shadowsocks-server:
+    image: vaultwarden/server:1.30.5
+    container_name: bitwarden
+    restart: always
+    volumes:
+      - ./data/:/data/
+    ports:
+      - "31180:80"

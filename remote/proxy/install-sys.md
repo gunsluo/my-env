@@ -67,3 +67,12 @@ acme.sh --set-default-ca --server letsencrypt
 acme.sh --issue --standalone -d luojis.com -k ec-256
 ```
 
+### Warp
+
+```
+wget git.io/warp.sh
+bash warp.sh proxy
+bash warp.sh status
+```
+
+
