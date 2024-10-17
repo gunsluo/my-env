@@ -1,0 +1,7 @@
+[user]
+	name = luoji
+	email = ji.luo@target-energysolutions.com
+[core]
+    sshCommand = ssh -i ~/.ssh/id_ed25519_tes -F /dev/null
+[commit]
+	gpgsign = false

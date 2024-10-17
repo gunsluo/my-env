@@ -28,11 +28,13 @@
 [user]
 	name = luoji
 	email = gunsluo@gmail.com
+	signingkey = 58E1D182BDF14ADF
 [core]
-	editor = /usr/local/bin/vim
-	excludesfile = /Users/jerrylou/.gitignore_global
+	editor = /usr/bin/vim
+	excludesfile = /Users/luoji/.gitignore_global
     pager = cat
     autocrlf = input
+	longpaths = true
 [difftool "Kaleidoscope"]
     cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [diff]
@@ -51,7 +53,21 @@
     summary = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+	path =
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+#[url "ssh://git@github.com"]
+#    insteadOf = https://github.com
+[url "git@github.com:tespkg"]
+	insteadOf = https://github.com/tespkg
+[url "git@github.com:oxidnova"]
+	insteadOf = https://github.com/oxidnova
+[gpg]
+	program = gpg
+[includeIf "gitdir:/Users/luoji/gopath/src/tespkg.in/"]
+    path = ~/.gitconfig-tespkg
+[includeIf "gitdir:/Users/luoji/gopath/src/github.com/tespkg/"]
+    path = ~/.gitconfig-tespkg
+[url "git@gitlab.com:"]
+	insteadOf = https://gitlab.com/
