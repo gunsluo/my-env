@@ -1,129 +1,50 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# Path to your oh-my-zsh installation.
-export ZSH=/Users/luoji/.oh-my-zsh
+eval "$(starship init zsh)"
 
-# Set name of the theme to load. Optionally, if you set this to "random"
-# it'll load a random theme each time that oh-my-zsh is loaded.
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+alias vi="nvim"
+alias vim="nvim"
 
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+alias sshtw="ssh gunsluo@35.201.142.238"
+alias sshme="ssh -p '27756' 'root@'80.251.215.105"
+alias sshbwg="ssh -p '26603' 'root@'216.24.179.183"
+alias sshoc3="ssh root@146.56.110.124"
+alias sshoc4="ssh root@129.154.57.99"
+alias sshoc1="ssh root@152.69.224.140"
+alias sshoc2="ssh root@158.180.79.71"
+alias sshsw="ssh root@2001:bc8:634:2128::1"
 
-# Uncomment the following line to use hyphen-insensitive completion. Case
-# sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+# alias k="CLOUDSDK_PYTHON=/opt/homebrew/bin/python3.11 kubectl"
+# alias tp="telepresence"
+# alias tpi="telepresence intercept"
+# alias antlr4='java -Xmx500M -cp "/usr/local/lib/antlr-4.9-complete.jar:$CLASSPATH" org.antlr.v4.Tool'
+# alias grun='java -Xmx500M -cp "/usr/local/lib/antlr-4.9-complete.jar:$CLASSPATH" org.antlr.v4.gui.TestRig'
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
 
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+function setproxy() {
+    export https_proxy=http://127.0.0.1:8016 http_proxy=http://127.0.0.1:8016 all_proxy=socks5://127.0.0.1:8016
+}
 
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
-plugins=(git z)
-
-source $ZSH/oh-my-zsh.sh
-
-. ~/.oh-my-zsh/plugins/z/z.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-# ssh
-# export SSH_KEY_PATH="~/.ssh/rsa_id"
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+function unsetproxy() {
+    unset {http,https,all}_proxy
+}
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 export GOROOT=$HOME/go
 export GOPATH=$HOME/gopath
 export GOBIN=$GOPATH/bin
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 
-function setproxy() {
-    export {http,https,ftp}_proxy="http://localhost:8016"
-}
+export JAVA_HOME=/Users/luoji/java/jdk-11.0.16.1/Contents/Home
+export MVN_HOME=$HOME/maven/apache-maven-3.8.6
 
-function unsetproxy() {
-    unset {http,https,ftp}_proxy
-}
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$JAVA_HOME/bin:$MVN_HOME/bin
 
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-autoload -U up-line-or-beginning-search
-autoload -U down-line-or-beginning-search
-zle -N up-line-or-beginning-search
-zle -N down-line-or-beginning-search
-bindkey "^[[A" up-line-or-beginning-search # Up
-bindkey "^[[B" down-line-or-beginning-search # Down
+source ~/.zsh/zsh-z/zsh-z.plugin.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-#autoload -U promptinit && promptinit
-#prompt pure
-
-
-alias sshjyl='ssh jerrylou@120.27.95.46'
-
-# Load zsh-syntax-highlighting.
-source ~/.oh-my-zsh/plugins/zsh-users/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-#
-# Load zsh-autosuggestions.
-source ~/.oh-my-zsh/plugins/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
-#
-
-# Enable autosuggestions automatically.
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=10"
-
-bindkey '^F' autosuggest-accept

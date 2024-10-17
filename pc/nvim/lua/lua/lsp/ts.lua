@@ -5,4 +5,4 @@ local config = lsp_settings.config({
 })
 config.root_dir = require('lspconfig').util.root_pattern("package.json")
 
-require('lspconfig').tsserver.setup(config)
+require('lspconfig').ts_ls.setup(config)
