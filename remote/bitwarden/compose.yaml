@@ -1,6 +1,6 @@
 services:
   shadowsocks-server:
-    image: vaultwarden/server:1.30.5
+    image: vaultwarden/server:1.32.2
     container_name: bitwarden
     restart: always
     volumes:
