@@ -2,6 +2,7 @@ eval "$(starship init zsh)"
 
 alias vi="nvim"
 alias vim="nvim"
+alias ls="eza"
 
 alias sshtw="ssh gunsluo@35.201.142.238"
 alias sshme="ssh -p '27756' 'root@'80.251.215.105"
@@ -34,9 +35,10 @@ export GOROOT=$HOME/go
 export GOPATH=$HOME/gopath
 export GOBIN=$GOPATH/bin
 
-
 export JAVA_HOME=/Users/luoji/java/jdk-11.0.16.1/Contents/Home
 export MVN_HOME=$HOME/maven/apache-maven-3.8.6
+
+export EZA_CONFIG_DIR=$HOME/.config/eza
 
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin:$JAVA_HOME/bin:$MVN_HOME/bin
 
