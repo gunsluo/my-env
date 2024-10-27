@@ -1,37 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: configuratorv2
-  namespace: grassroot
+  name: acgrpc
+  namespace: dmz
 spec:
   selector:
     matchLabels:
-      app: configuratorv2
+      app: acgrpc
   replicas: 1
   template:
     metadata:
       labels:
-        app: configuratorv2
+        app: acgrpc
     spec:
       containers:
-        - name: configuratorv2
-          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/configurator-be:1.2.4-oia-mixedmanual
+        - name: acgrpc
+          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/access-control:4.1.2
           command:
-            - /usr/local/bin/configurator-be
-            - rest
+            - /usr/local/bin/ac-serve
+            - serve
             - -c
             - /usr/local/config/config.yaml
-            - all
+            - grpc
             - --verbose
           ports:
-            - containerPort: 9302
+            - containerPort: 7001
           volumeMounts:
-            - name: cfgv2-config
+            - name: ac-config
               mountPath: /usr/local/config/config.yaml
               subPath: config.yaml
       volumes:
-        - name: cfgv2-config
+        - name: ac-config
           configMap:
-            name: cfgv2-config
+            name: ac-config
       imagePullSecrets:
         - name: registry.gitlab.com

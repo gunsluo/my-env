@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: configuratorv2
-  namespace: grassroot
+  namespace: dmz
 spec:
   selector:
     matchLabels:

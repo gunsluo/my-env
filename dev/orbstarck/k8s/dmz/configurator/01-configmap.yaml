@@ -1,0 +1,116 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cfgv2-config
+  namespace: dmz
+data:
+  config.yaml: |
+    version: 1.0.0
+
+    rest:
+      # REST_PORT
+      port: 9302
+      # REST_RUN_MODE
+      mode: debug
+      basic:
+        user: "admin"
+        pass: "configurator"
+      cors:
+        # REST_CORS_ENABLED
+        enabled: true
+        # REST_CORS_MAX_AGE
+        max_age: 12h
+        # REST_CORS_ALLOWED_ORIGINS
+        allowed_origins:
+          - '*'
+        # REST_CORS_ALLOWED_METHODS="GET POST"
+        allowed_methods:
+          - GET
+          - POST
+          - PUT
+          - PATCH
+          - DELETE
+          - HEAD
+          - OPTIONS
+        # REST_CORS_ALLOWED_HEADERS
+        allowed_headers:
+          - '*'
+          - 'Authorization'
+        # REST_CORS_ALLOW_CREDENTIALS
+        allow_credentials: true
+    serve:
+      postgres_dsn: "postgres://postgres:password@postgres.infra:5432/dmzconfigurator?sslmode=disable"
+      deploy_regin: ""
+      ac:
+        address: "acgrpc.dmz:7001"
+        ca_path: ""
+        crt_path: ""
+        key_path: ""
+        server_name: ""
+      profile:
+        address: "pfgrpc.dmz:5051"
+        ca_path: ""
+        crt_path: ""
+        key_path: ""
+        server_name: ""
+      ses: "sessmsgrpc.grassroot:6000"
+      oidc:
+        address: http://dex.dmz.svc.cluster.local:5556
+        client_id: "example-app"
+        client_secret: "ZXhhbXBsZS1hcHAtc2VjcmV0"
+      sso: 
+        address: "dex.dmz:5557"
+        ca_path: ""
+        crt_path: ""
+        key_path: ""
+        server_name: ""
+      license: "license.dmz:16000"
+      notification: "localhost:6565"
+      redis: "redis://redis.infra:6379"
+      rabbitmq: "amqp://rabbitmq.dmz:5672"
+      org_chart: "localhost:9503"
+      sender_mail: "info@fluxble.com"
+    switch:
+      enable_qiyili_storage: true
+      enable_qiyili_template: true
+      enable_fluxble_template: false
+      enable_payment: false
+    plan:
+      trial_package: 6
+      org_default_user_num: 100
+      org_default_net_space: 100
+      trial_in_month: 3
+    passwordManager:
+      minLength: 8
+      checkRule: "(?=.*[A-Za-z])(?=.*[0-9])"
+      errMsg: "MustBeAlphaNum"
+    uploader:
+      uploaderName: "uploader"
+      uploaderEmail: "uploader@target-energysolutions.com"
+      uploaderPassword: "WhKWPgJNp3Domb1NaufaOfReW"
+      jwtToken: "Tes9tinas2kmskajirn"
+    pusher:
+      product: "leilam"
+      send_to: "admin@example.com"
+      account_login_url: "https://auctions.test.meeraspace.com/login"
+      admin_approval_url: "https://auctions.test.meeraspace.com/admin"
+    bootOptions:
+      hiddenGlobalRoles: "target-subscription-store:org-global-admin,target-license-manager:admin,target-license-manager:super-admin"
+    ormOptions:
+      maxIdleConns: 50
+      maxOpenConns: 1000
+      connMaxLifetime: 1
+      dsn: "postgres://postgres:password@postgres.infra:5432/dmzconfigurator?sslmode=disable"
+    cache:
+      interval: 1
+      concurrency: 3000
+      expired: 60
+      redis_first: true
+    hooks:
+      jwtKey: "5F9-C=AF,FJN+RVV(S2D(SFF"
+      expired: 360
+      joinOrganization: oia
+    payment:
+      ombGatewayURL: https://api.dev.meeraspace.com/epay/omb/reachlm
+      ombWebhookPath: v2/payment
+      ombCallbackServiceURL: http://localhost:9001
