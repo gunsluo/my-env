@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rm
+  namespace: grassroot
+spec:
+  selector:
+    matchLabels:
+      app: rm
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rm
+    spec:
+      containers:
+        - name: rm
+          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/resource-manager:0.3.51
+          command:
+            - /usr/local/bin/rm-serve
+            - -c
+            - /usr/local/config/config.yaml
+            - rest
+            - --verbose
+          ports:
+            - containerPort: 6677
+          volumeMounts:
+            - name: rm-config
+              mountPath: /usr/local/config/config.yaml
+              subPath: config.yaml
+      volumes:
+        - name: rm-config
+          configMap:
+            name: rm-config
+      imagePullSecrets:
+        - name: registry.gitlab.com
