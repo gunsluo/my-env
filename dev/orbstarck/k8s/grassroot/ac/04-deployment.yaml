@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: acgrpc
+  namespace: grassroot
+spec:
+  selector:
+    matchLabels:
+      app: acgrpc
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: acgrpc
+    spec:
+      containers:
+        - name: acgrpc
+          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/access-control:4.1.2
+          command:
+            - /usr/local/bin/ac-serve
+            - serve
+            - -c
+            - /usr/local/config/config.yaml
+            - grpc
+            - --verbose
+          ports:
+            - containerPort: 7001
+          volumeMounts:
+            - name: ac-config
+              mountPath: /usr/local/config/config.yaml
+              subPath: config.yaml
+      volumes:
+        - name: ac-config
+          configMap:
+            name: ac-config
+      imagePullSecrets:
+        - name: registry.gitlab.com
