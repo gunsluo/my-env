@@ -13,6 +13,6 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Delete
+  persistentVolumeReclaimPolicy: Retain
   hostPath:
-    path: /data/consul
+    path: /Users/luoji/.orbstack/data/k8s/consul

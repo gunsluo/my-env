@@ -13,6 +13,7 @@ spec:
   volumeMode: Filesystem
   accessModes:
     - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Delete
+  persistentVolumeReclaimPolicy: Retain
   hostPath:
-    path: /data/postgres
+    # orbstack is mounted on Mac filesystem /Users/luoji/.orbstack/data/k8s
+    path: /Users/luoji/.orbstack/data/k8s/postgres
