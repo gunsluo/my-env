@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sessmsrest
+  namespace: grassroot
+spec:
+  selector:
+    matchLabels:
+      app: sessmsrest
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sessmsrest
+    spec:
+      containers:
+        - name: sessmsrest
+          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/sessms:2.4.6
+          command:
+            - /usr/local/bin/sender-serve
+            - serve
+            - -c
+            - /usr/local/config/config.yaml
+            - rest
+            - --verbose
+          ports:
+            - containerPort: 6100
+          volumeMounts:
+            - name: sessms-config
+              mountPath: /usr/local/config/config.yaml
+              subPath: config.yaml
+      volumes:
+        - name: sessms-config
+          configMap:
+            name: sessms-config
+      imagePullSecrets:
+        - name: registry.gitlab.com
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sessmsconsole
+  namespace: grassroot
+spec:
+  selector:
+    matchLabels:
+      app: sessmsconsole
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sessmsconsole
+    spec:
+      containers:
+        - name: sessmsconsole
+          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/sessms-console:2.4.6
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ENVA_ENV_FILES
+              value: ""
+          volumeMounts:
+            - name: sessms-console-config
+              mountPath: /usr/share/nginx/html/config.js
+              subPath: config.js
+      volumes:
+        - name: sessms-console-config
+          configMap:
+            name: sessms-console-config
+      imagePullSecrets:
+        - name: registry.gitlab.com
