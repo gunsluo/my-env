@@ -3,7 +3,7 @@ local function setup()
   vim.api.nvim_set_keymap('n', '<leader>fg', '<Cmd>Telescope live_grep_args<CR>', { noremap = true })
   vim.api.nvim_set_keymap('n', '<leader>fb', '<Cmd>Telescope buffers<CR>', { noremap = true })
   vim.api.nvim_set_keymap('n', '<leader>fh', '<Cmd>Telescope help_tags<CR>', { noremap = true })
-  vim.api.nvim_set_keymap('n', '<leader>da', '<Cmd>Telescope diagnostics<CR>', { noremap = true })
+  vim.api.nvim_set_keymap('n', '<leader>da', '<Cmd>Telescope diagnostics bufnr=0<CR>', { noremap = true })
 
   vim.api.nvim_set_keymap('n', '<leader>ma', '<Cmd>Telescope vim_bookmarks all<CR>', { noremap = true })
   vim.api.nvim_set_keymap('n', 'ma', '<Cmd>Telescope vim_bookmarks current_file<CR>', { noremap = true })

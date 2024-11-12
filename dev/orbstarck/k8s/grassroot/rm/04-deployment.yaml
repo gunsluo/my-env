@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: rm
-          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/resource-manager:0.3.51
+          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/resource-manager:0.4.1
           command:
             - /usr/local/bin/rm-serve
             - -c
