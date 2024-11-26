@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: cockroachdb
+  namespace: infra
+spec:
+  selector:
+    matchLabels:
+      app: cockroachdb # has to match .spec.template.metadata.labels
+  serviceName: "cockroachdb"
+  replicas: 1 # by default is 1
+  template:
+    metadata:
+      labels:
+        app: cockroachdb # has to match .spec.selector.matchLabels
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: cockroachdb
+          image: cockroachdb/cockroach:v24.2.5
+          command:
+            - cockroach
+            - start-single-node
+            - --insecure
+          env:
+            - name: COCKROACH_USER
+              value: "root"
+            - name: COCKROACH_PASSWORD
+              value: "password"
+          ports:
+            - containerPort: 26257
+            - containerPort: 8080
+          volumeMounts:
+            - name: cockroachdb-pvc
+              mountPath: /cockroach/cockroachdb-data
+  volumeClaimTemplates:
+    - metadata:
+        name: cockroachdb-pvc
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        storageClassName: "local-cockroachdb-storage"
+        resources:
+          requests:
+            storage: 1Gi
