@@ -35,6 +35,7 @@ return require('packer').startup(function(use)
   }
 
   use 'hrsh7th/cmp-nvim-lsp'
+  use 'VonHeikemen/lsp-zero.nvim'
 
   use {
     'ray-x/lsp_signature.nvim',
@@ -82,7 +83,6 @@ return require('packer').startup(function(use)
   require('plug-cfgs/gruvbox').config()
   require('plug-cfgs/mason').config()
   require('plug-cfgs/mason-lspconfig').config()
-  require('plug-cfgs/nvim-cmp').config()
   require('plug-cfgs/comment').config()
   require('plug-cfgs/telescope').setup()
   require('plug-cfgs/telescope').config()
@@ -96,4 +96,6 @@ return require('packer').startup(function(use)
 
   -- re-install to run TSInstall
   require('plug-cfgs/treesitter').config()
+  -- lsp config
+  require('plug-cfgs/lsp').config()
 end)
