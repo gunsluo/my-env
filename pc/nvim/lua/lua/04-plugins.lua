@@ -97,5 +97,5 @@ return require('packer').startup(function(use)
   -- re-install to run TSInstall
   require('plug-cfgs/treesitter').config()
   -- lsp config
-  require('plug-cfgs/lsp').config()
+  require('plug-cfgs/lsp/config').setup()
 end)

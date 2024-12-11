@@ -1,6 +1,4 @@
-local lsp_go = require 'plug-cfgs.lsp.go'
-
-local function config()
+local function setup()
   -- Reserve a space in the gutter
   vim.opt.signcolumn = 'yes'
 
@@ -28,18 +26,12 @@ local function config()
       vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
       vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
       vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-      vim.keymap.set({ 'n', 'x' }, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+      vim.keymap.set({ 'n', 'x' }, '<leader>f', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
       vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
     end,
   })
 
-  -- These are just examples. Replace them with the language
-  -- servers you have installed in your system
-  require('lspconfig').gopls.setup(lsp_go.config({}))
-  require('lspconfig').lua_ls.setup({})
-  require('lspconfig').ts_ls.setup({})
-  require('lspconfig').denols.setup({})
-  require('lspconfig').yamlls.setup({})
+  require('plug-cfgs.lsp.lang').setup()
 
   local cmp = require('cmp')
 
@@ -58,5 +50,5 @@ local function config()
 end
 
 return {
-  config = config,
+  setup = setup,
 }
