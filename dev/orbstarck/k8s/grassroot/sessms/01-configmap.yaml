@@ -166,6 +166,15 @@ data:
               from: "+447401255644"
               affinityRegion: []
               unreachableRegion: ["CN"]
+      render:
+        tag:
+          start: "${"
+          end: "}"
+        templates:
+          - name: otp
+            content: "this s a test, code: ${code}."
+            description: otp sms
+            meta: '{"aliyun":{"signName":"阿里云短信测试","templateCode":"SMS_154950909"}}'
 
 
     rabbit:
