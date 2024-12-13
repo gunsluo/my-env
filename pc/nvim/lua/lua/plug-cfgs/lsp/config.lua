@@ -38,6 +38,9 @@ local function setup()
   cmp.setup({
     sources = {
       { name = 'nvim_lsp' },
+      { name = 'vsnip' }, -- For vsnip users.
+      { name = 'path' },
+      { name = 'buffer' },
     },
     snippet = {
       expand = function(args)
@@ -45,7 +48,9 @@ local function setup()
         vim.snippet.expand(args.body)
       end,
     },
-    mapping = cmp.mapping.preset.insert({}),
+    mapping = cmp.mapping.preset.insert({
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item.
+    }),
   })
 end
 
