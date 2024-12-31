@@ -129,7 +129,6 @@ data:
 
 
     strategy:
-      disableSignup: false
       verifiedCodeLength: 4
       enablePasswordDB: true
       identity:
@@ -211,44 +210,14 @@ data:
           key: hook-security-key
           expiry: 60s
 
-    flows:
-      # login:
-      #   before:
-      #     hooks:
-      #       - type: web_hook
-      #         description: an example
-      #         trigger: true/fasle
-      #         metadata: []
-      #         config:
-      #           method: post
-      #           url: http://127.0.0.1:8090/hook/login/before
-      #           with_token: true
-      #   after:
-      #     hooks:
-      # registration:
-      #   check_user:
-      #     enabled: true
-      #     hook:
-      #       type: web_hook
-      #       description: an example
-      #       config:
-      #         method: post
-      #         url: http://127.0.0.1:8090/hook/logout/before
-      #   before:
-      #     hooks:
-      #   after:
-      #     hooks:
-      # logout:
-      #   before:
-      #     hooks:
-      #       - type: web_hook
-      #         description: an example
-      #         config:
-      #           method: post
-      #           url: http://127.0.0.1:8090/hook/logout/before
-      #           with_token: true
-      #   after:
-      #     hooks:
+    ui:
+      flows:
+        registration:
+          enabled: true
+          before:
+            hooks:
+          after:
+            hooks:
 
     redis:
       prefix: sso
