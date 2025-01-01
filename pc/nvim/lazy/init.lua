@@ -1,5 +1,2 @@
-require("basic")
-
-for f in vim.fn.glob('~/.config/nvim/lua/*.*'):gmatch('%.') do
-  vim.cmd("source " .. f)
-end
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
