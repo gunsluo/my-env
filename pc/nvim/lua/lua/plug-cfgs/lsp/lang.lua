@@ -1,7 +1,7 @@
 local on_attach = function(client, bufnr)
   -- auto format
   local extension = vim.bo.filetype
-  if extension == 'go' then
+  if extension == "go" then
     -- use goimport instead of gofmt
     vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = "*.go",
@@ -23,11 +23,11 @@ local on_attach = function(client, bufnr)
           end
         end
         vim.lsp.buf.format({ async = false })
-      end
+      end,
     })
   else
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      command = 'lua vim.lsp.buf.format()',
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      command = "lua vim.lsp.buf.format()",
       nested = true,
     })
   end
@@ -42,29 +42,28 @@ local function settings()
     flags = {
       debounce_text_changes = 150,
     },
-    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
   }
 end
-
 
 local function setup()
   -- These are just examples. Replace them with the language
   -- servers you have installed in your system
-  require('lspconfig').gopls.setup(vim.tbl_deep_extend('force', settings(), {}))
-  require('lspconfig').lua_ls.setup(vim.tbl_deep_extend('force', settings(), {}))
-  require('lspconfig').yamlls.setup(vim.tbl_deep_extend('force', settings(), {}))
+  require("lspconfig").gopls.setup(vim.tbl_deep_extend("force", settings(), {}))
+  require("lspconfig").lua_ls.setup(vim.tbl_deep_extend("force", settings(), {}))
+  require("lspconfig").yamlls.setup(vim.tbl_deep_extend("force", settings(), {}))
 
   -- Javascript and Typescript
   local files_in_pwd = vim.fn.readdir(vim.fn.getcwd())
   local should_init_deno_lsp = false
   for _, file_name in ipairs(files_in_pwd) do
-    if file_name == 'deno.json' then
+    if file_name == "deno.json" then
       should_init_deno_lsp = true
     end
   end
 
   if should_init_deno_lsp then
-    require('lspconfig').denols.setup(vim.tbl_deep_extend('force', settings(), {
+    require("lspconfig").denols.setup(vim.tbl_deep_extend("force", settings(), {
       settings = {
         deno = {
           enable = true,
@@ -73,7 +72,7 @@ local function setup()
             enumMemberValues = { enabled = true },
             functionLikeReturnTypes = { enabled = true },
             parameterNames = {
-              enabled = 'all',
+              enabled = "all",
               suppressWhenArgumentMatchesName = true,
             },
             parameterTypes = { enabled = true },
@@ -87,10 +86,10 @@ local function setup()
       },
     }))
   else
-    require('lspconfig').ts_ls.setup(vim.tbl_deep_extend('force', settings(), {
+    require("lspconfig").ts_ls.setup(vim.tbl_deep_extend("force", settings(), {
       init_options = {
         preferences = {
-          includeInlayParameterNameHints = 'all',
+          includeInlayParameterNameHints = "all",
           includeInlayFunctionParameterTypeHints = true,
           includeInlayVariableTypeHints = true,
           includeInlayPropertyDeclarationTypeHints = true,
