@@ -26,22 +26,22 @@ vim.api.nvim_set_keymap("n", "<leader>dl", "<Cmd>lua vim.diagnostic.show_line_di
 vim.api.nvim_set_keymap("n", "<leader>]", "<Cmd>BufferLineCycleNext<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>[", "<Cmd>BufferLineCyclePrev<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap(
-	"n",
-	"<leader>1",
-	[[<Cmd>lua require('bufferline').go_to_buffer(1, true)<CR>]],
-	{ noremap = true, silent = true }
+  "n",
+  "<leader>1",
+  [[<Cmd>lua require('bufferline').go_to_buffer(1, true)<CR>]],
+  { noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap(
-	"n",
-	"<leader>2",
-	[[<Cmd>lua require('bufferline').go_to_buffer(2, true)<CR>]],
-	{ noremap = true, silent = true }
+  "n",
+  "<leader>2",
+  [[<Cmd>lua require('bufferline').go_to_buffer(2, true)<CR>]],
+  { noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap(
-	"n",
-	"<leader>3",
-	[[<Cmd>lua require('bufferline').go_to_buffer(3, true)<CR>]],
-	{ noremap = true, silent = true }
+  "n",
+  "<leader>3",
+  [[<Cmd>lua require('bufferline').go_to_buffer(3, true)<CR>]],
+  { noremap = true, silent = true }
 )
 
 -- setup nvim-tree key
