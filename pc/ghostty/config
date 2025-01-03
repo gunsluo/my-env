@@ -6,7 +6,7 @@
 # Comments start with a `#` and are only valid on their own line.
 # Blank lines are ignored!
 
-# ghostty +list-keybinds --default 
+# ghostty +list-keybinds --default
 # keybind = ctrl+z= lose_surface
 # keybind = ctrl+d=new_split:right
 
