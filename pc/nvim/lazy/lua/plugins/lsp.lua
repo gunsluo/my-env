@@ -35,6 +35,19 @@ end
 
 -- * override the configuration of LazyVim plugins
 return {
+  -- add pyright to lspconfig
+  {
+    "neovim/nvim-lspconfig",
+    ---@class PluginLspOpts
+    opts = {
+      ---@type lspconfig.options
+      servers = {
+        -- pyright will be automatically installed with mason and loaded with lspconfig
+        pyright = {},
+      },
+    },
+  },
+
   -- dadbod plugin
   {
     "kristijanhusak/vim-dadbod-ui",
@@ -81,6 +94,29 @@ return {
       keymap = {
         preset = "default",
         ["<CR>"] = { "accept", "fallback" },
+        ["<Up>"] = { "select_prev", "fallback" },
+        ["<Down>"] = { "select_next", "fallback" },
+
+        -- disable a keymap from the preset
+        ["<C-e>"] = {},
+
+        -- show with a list of providers
+        ["<C-space>"] = {
+          function(cmp)
+            cmp.show({ providers = { "snippets" } })
+          end,
+        },
+
+        -- control whether the next command will be run when using a function
+        ["<C-n>"] = {
+          function(cmp)
+            if some_condition then
+              return
+            end   -- runs the next command
+            return true -- doesn't run the next command
+          end,
+          "select_next",
+        },
       },
 
       appearance = {
@@ -129,24 +165,45 @@ return {
     opts_extend = { "sources.default" },
   },
 
-  -- LSP servers and clients communicate which features they support through "capabilities".
-  --  By default, Neovim supports a subset of the LSP specification.
-  --  With blink.cmp, Neovim has *more* capabilities which are communicated to the LSP servers.
-  --  Explanation from TJ: https://youtu.be/m8C0Cq9Uv9o?t=1275
-  --
-  -- This can vary by config, but in general for nvim-lspconfig:
+  -- add languages and setup
   {
     "neovim/nvim-lspconfig",
     dependencies = { "saghen/blink.cmp" },
 
     -- -- example using `opts` for defining servers
     opts = {
+      -- servers = lspLanguageServers(),
       servers = {
-        gopls = {},
+        gopls = {
+          on_attach = function(client, bufnr)
+            on_attach(client, bufnr)
+          end,
+          capabilities = require("blink.cmp").get_lsp_capabilities(),
+        },
         lua_ls = {},
         yamlls = {},
       },
     },
+
+    init = function()
+      require("lazyvim.util").lsp.on_attach(function(_, buffer)
+        vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = buffer })
+        vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", { buffer = buffer })
+        vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { buffer = buffer })
+        vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", { buffer = buffer })
+        vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", { buffer = buffer })
+        vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", { buffer = buffer })
+        vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { buffer = buffer })
+        vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", { buffer = buffer })
+        vim.keymap.set(
+          { "n", "x" },
+          "<leader>f",
+          "<cmd>lua vim.lsp.buf.format({async = true})<cr>",
+          { buffer = buffer }
+        )
+        vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", { buffer = buffer })
+      end)
+    end,
     config = function(_, opts)
       -- default config
       local lspconfig = require("lspconfig")
@@ -156,9 +213,6 @@ return {
         config.on_attach = function(client, bufnr)
           on_attach(client, bufnr)
         end
-        config.flags = {
-          debounce_text_changes = 150,
-        }
         config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
         lspconfig[server].setup(config)
       end
@@ -174,7 +228,6 @@ return {
 
       if should_init_deno_lsp then
         lspconfig["denols"].setup({
-          -- on_attach = on_attach,
           on_attach = function(client, bufnr)
             on_attach(client, bufnr)
           end,
@@ -205,7 +258,6 @@ return {
         })
       else
         lspconfig["ts_ls"].setup({
-          -- on_attach = on_attach,
           on_attach = function(client, bufnr)
             on_attach(client, bufnr)
           end,
