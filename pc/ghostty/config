@@ -8,10 +8,10 @@
 
 # keybind = ctrl+z= lose_surface
 # keybind = ctrl+d=new_split:right
-keybind = cmd+shift>[=previous_tab
-keybind = cmd+shift>]=next_tab
-keybind = cmd>[=goto_split:previous
-keybind = cmd>]=goto_split:next
+keybind = ctrl+shift+[=previous_tab
+keybind = ctrl+shift+]=next_tab
+keybind = shift+[=goto_split:previous
+keybind = shift+]=goto_split:next
 
 # Empty values reset the configuration to the default value
 font-family = "0xProto Nerd Font Mono"
