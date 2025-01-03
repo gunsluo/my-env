@@ -6,12 +6,9 @@
 # Comments start with a `#` and are only valid on their own line.
 # Blank lines are ignored!
 
+# ghostty +list-keybinds --default 
 # keybind = ctrl+z= lose_surface
 # keybind = ctrl+d=new_split:right
-keybind = ctrl+shift+[=previous_tab
-keybind = ctrl+shift+]=next_tab
-keybind = shift+[=goto_split:previous
-keybind = shift+]=goto_split:next
 
 # Empty values reset the configuration to the default value
 font-family = "0xProto Nerd Font Mono"
