@@ -170,71 +170,31 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = { "saghen/blink.cmp" },
 
-    -- -- example using `opts` for defining servers
-    opts = {
-      -- servers = lspLanguageServers(),
-      servers = {
-        gopls = {
-          on_attach = function(client, bufnr)
-            on_attach(client, bufnr)
-          end,
-          capabilities = require("blink.cmp").get_lsp_capabilities(),
-        },
-        lua_ls = {},
-        yamlls = {},
-      },
-    },
-
-    init = function()
-      require("lazyvim.util").lsp.on_attach(function(_, buffer)
-        vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = buffer })
-        vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", { buffer = buffer })
-        vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { buffer = buffer })
-        vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", { buffer = buffer })
-        vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", { buffer = buffer })
-        vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", { buffer = buffer })
-        vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { buffer = buffer })
-        vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", { buffer = buffer })
-        vim.keymap.set(
-          { "n", "x" },
-          "<leader>f",
-          "<cmd>lua vim.lsp.buf.format({async = true})<cr>",
-          { buffer = buffer }
-        )
-        vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", { buffer = buffer })
-      end)
-    end,
-    config = function(_, opts)
-      -- default config
-      local lspconfig = require("lspconfig")
-      for server, config in pairs(opts.servers) do
-        -- passing config.capabilities to blink.cmp merges with the capabilities in your
-        -- `opts[server].capabilities, if you've defined it
-        config.on_attach = function(client, bufnr)
+    opts = function(_, opts)
+      local defaultConfig = {
+        on_attach = function(client, bufnr)
           on_attach(client, bufnr)
-        end
-        config.capabilities = require("blink.cmp").get_lsp_capabilities(config.capabilities)
-        lspconfig[server].setup(config)
-      end
+        end,
+        capabilities = require("blink.cmp").get_lsp_capabilities(),
+      }
 
-      -- Javascript and Typescript
-      local files_in_pwd = vim.fn.readdir(vim.fn.getcwd())
-      local should_init_deno_lsp = false
-      for _, file_name in ipairs(files_in_pwd) do
-        if file_name == "deno.json" then
-          should_init_deno_lsp = true
-        end
-      end
-
-      if should_init_deno_lsp then
-        lspconfig["denols"].setup({
-          on_attach = function(client, bufnr)
-            on_attach(client, bufnr)
-          end,
-          flags = {
-            debounce_text_changes = 150,
+      opts.servers = {
+        gopls = vim.list_extend(defaultConfig, {}),
+        lua_ls = vim.list_extend(defaultConfig, {}),
+        yamlls = vim.list_extend(defaultConfig, {}),
+        ts_ls = vim.list_extend(defaultConfig, {
+          init_options = {
+            preferences = {
+              includeInlayParameterNameHints = "all",
+              includeInlayFunctionParameterTypeHints = true,
+              includeInlayVariableTypeHints = true,
+              includeInlayPropertyDeclarationTypeHints = true,
+              includeInlayFunctionLikeReturnTypeHints = true,
+              includeInlayEnumMemberValueHints = true,
+            },
           },
-          capabilities = require("blink.cmp").get_lsp_capabilities(),
+        }),
+        denols = vim.list_extend(defaultConfig, {
           settings = {
             deno = {
               enable = true,
@@ -255,27 +215,55 @@ return {
               },
             },
           },
-        })
-      else
-        lspconfig["ts_ls"].setup({
-          on_attach = function(client, bufnr)
-            on_attach(client, bufnr)
-          end,
-          flags = {
-            debounce_text_changes = 150,
-          },
-          capabilities = require("blink.cmp").get_lsp_capabilities(),
-          init_options = {
-            preferences = {
-              includeInlayParameterNameHints = "all",
-              includeInlayFunctionParameterTypeHints = true,
-              includeInlayVariableTypeHints = true,
-              includeInlayPropertyDeclarationTypeHints = true,
-              includeInlayFunctionLikeReturnTypeHints = true,
-              includeInlayEnumMemberValueHints = true,
-            },
-          },
-        })
+        }),
+      }
+    end,
+
+    init = function()
+      require("lazyvim.util").lsp.on_attach(function(client, buffer)
+        -- if client.name == "yamlls" then
+        client.server_capabilities.documentFormattingProvider = true
+        -- end
+
+        vim.keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", { buffer = buffer })
+        vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", { buffer = buffer })
+        vim.keymap.set("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<cr>", { buffer = buffer })
+        vim.keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<cr>", { buffer = buffer })
+        vim.keymap.set("n", "go", "<cmd>lua vim.lsp.buf.type_definition()<cr>", { buffer = buffer })
+        vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<cr>", { buffer = buffer })
+        vim.keymap.set("n", "gs", "<cmd>lua vim.lsp.buf.signature_help()<cr>", { buffer = buffer })
+        vim.keymap.set("n", "<F2>", "<cmd>lua vim.lsp.buf.rename()<cr>", { buffer = buffer })
+        vim.keymap.set(
+          { "n", "x" },
+          "<leader>f",
+          "<cmd>lua vim.lsp.buf.format({async = true})<cr>",
+          { buffer = buffer }
+        )
+        vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", { buffer = buffer })
+      end)
+    end,
+
+    -- load config
+    config = function(_, opts)
+      -- Javascript and Typescript
+      local files_in_pwd = vim.fn.readdir(vim.fn.getcwd())
+      local should_init_deno_lsp = false
+      for _, file_name in ipairs(files_in_pwd) do
+        if file_name == "deno.json" then
+          should_init_deno_lsp = true
+        end
+      end
+
+      local lspconfig = require("lspconfig")
+      for server, config in pairs(opts.servers) do
+        -- passing config.capabilities to blink.cmp merges with the capabilities in your
+        if should_init_deno_lsp and server == "ts_ls" then
+          -- Skip ts_ls setup if deno.json exists
+        elseif not should_init_deno_lsp and server == "denols" then
+          -- Skip denols setup if deno.json doesn't exist
+        else
+          lspconfig[server].setup(config)
+        end
       end
     end,
   },

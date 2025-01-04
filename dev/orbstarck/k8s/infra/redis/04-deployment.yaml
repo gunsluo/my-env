@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: redis
-          image: redis:6.2.3-buster
+          image: redis:8.0-M02-bookworm
           ports:
             - containerPort: 6379
