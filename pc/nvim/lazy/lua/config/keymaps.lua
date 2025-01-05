@@ -43,6 +43,24 @@ vim.api.nvim_set_keymap(
   [[<Cmd>lua require('bufferline').go_to_buffer(3, true)<CR>]],
   { noremap = true, silent = true }
 )
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>4",
+  [[<Cmd>lua require('bufferline').go_to_buffer(4, true)<CR>]],
+  { noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>5",
+  [[<Cmd>lua require('bufferline').go_to_buffer(5, true)<CR>]],
+  { noremap = true, silent = true }
+)
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>6",
+  [[<Cmd>lua require('bufferline').go_to_buffer(6, true)<CR>]],
+  { noremap = true, silent = true }
+)
 
 -- setup nvim-tree key
 vim.api.nvim_set_keymap("n", "<C-m>", ":NvimTreeToggle<CR>", { noremap = true })

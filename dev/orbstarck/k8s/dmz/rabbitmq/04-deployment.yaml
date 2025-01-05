@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: rabbitmq
-          image: rabbitmq:3.9.13-management
+          image: rabbitmq:4.0.5-management
           env:
             - name: RABBITMQ_NODE_PORT
               value: "5672"

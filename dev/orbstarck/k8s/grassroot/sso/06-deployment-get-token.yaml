@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: gettoken
-          image: registry.gitlab.com/target-digital-transformation/sso/example_client/master
+          image: gunsluo/dex-client:latest
           command:
             - /usr/local/bin/dex-client
             - --issuer=http://dex.grassroot.svc.cluster.local:5556
@@ -25,5 +25,3 @@ spec:
             - --redirect-uri=http://gettoken.grassroot.svc.cluster.local:4444/callback
           ports:
             - containerPort: 4444
-      imagePullSecrets:
-        - name: registry.gitlab.com

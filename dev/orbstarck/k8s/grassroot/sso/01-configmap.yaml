@@ -73,8 +73,12 @@ data:
         signingKeys:
           # Originally configured as expiry.signingKeys
           lifespan: 6h
-          enableStaticKey: false
-          staticKeyPath: examples/private.pem
+          # builtin redis, default value is builtin
+          type: builtin
+          config:
+            # If you don't set the keyPath, a private key will be generated automatically.
+            # Setting keyPath is not recommended and is only used in special environments.
+            keyPath: /usr/local/config/private.pem
         exchange:
           authCode:
             # originally configured as exchangeToken.secretKey

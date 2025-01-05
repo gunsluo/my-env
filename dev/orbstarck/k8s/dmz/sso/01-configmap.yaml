@@ -73,8 +73,9 @@ data:
         signingKeys:
           # Originally configured as expiry.signingKeys
           lifespan: 6h
-          enableStaticKey: false
-          staticKeyPath: examples/private.pem
+          type: builtin
+          config:
+            keyPath: /usr/local/config/private.pem
         exchange:
           authCode:
             # originally configured as exchangeToken.secretKey
