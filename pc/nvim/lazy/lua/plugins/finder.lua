@@ -13,6 +13,19 @@ return {
       "nvim-telescope/telescope-live-grep-args.nvim",
       "tom-anders/telescope-vim-bookmarks.nvim",
     },
+    init = function()
+      require("lazyvim.util").lsp.on_attach(function(client, buffer)
+        local builtin = require("telescope.builtin")
+        vim.keymap.set("n", "<leader>ff", builtin.find_files, { buffer = buffer })
+        vim.keymap.set("n", "<leader>fg", builtin.live_grep, { buffer = buffer })
+        vim.keymap.set("n", "<leader>fb", builtin.buffers, { buffer = buffer })
+        vim.keymap.set("n", "<leader>fh", builtin.help_tags, { buffer = buffer })
+
+        vim.api.nvim_set_keymap("n", "<leader>ma", "<Cmd>Telescope vim_bookmarks all<CR>", { noremap = true })
+        vim.api.nvim_set_keymap("n", "ma", "<Cmd>Telescope vim_bookmarks current_file<CR>", { noremap = true })
+      end)
+    end,
+
     config = function()
       require("telescope").setup({
         extensions = {
