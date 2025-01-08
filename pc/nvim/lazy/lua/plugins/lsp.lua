@@ -75,6 +75,7 @@ return {
       {
         "rafamadriz/friendly-snippets",
       },
+      { "L3MON4D3/LuaSnip", version = "v2.*" },
     },
 
     -- use a release tag to download pre-built binaries
@@ -129,10 +130,12 @@ return {
         nerd_font_variant = "mono",
       },
 
+      snippets = { preset = "luasnip" },
+
       -- Default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
-        default = { "lsp", "path", "snippets", "buffer", "luasnip", "dadbod" },
+        default = { "lsp", "path", "snippets", "buffer", "dadbod" },
         providers = {
           dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
         },
