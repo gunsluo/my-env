@@ -6,6 +6,16 @@
 vim.api.nvim_set_keymap("n", "<Space>", "<NOP>", { noremap = true, silent = true })
 vim.g.mapleader = " "
 
+-- setup finder key(default)
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Telescope find files" })
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope live grep" })
+vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope buffers" })
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope help tags" })
+
+vim.api.nvim_set_keymap("n", "<leader>ma", "<Cmd>Telescope vim_bookmarks all<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "ma", "<Cmd>Telescope vim_bookmarks current_file<CR>", { noremap = true })
+
 -- diagnostics
 vim.api.nvim_set_keymap("n", "<leader>da", "<Cmd>Telescope diagnostics bufnr=0<CR>", { noremap = true })
 vim.api.nvim_set_keymap("n", "<leader>dj", "<Cmd>lua vim.diagnostic.goto_next()<CR>", { noremap = true })
