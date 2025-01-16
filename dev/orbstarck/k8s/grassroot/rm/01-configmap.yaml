@@ -68,7 +68,7 @@ data:
 
     resource:
       # RESOURCE_NAMESPACE
-      namespace: oia
+      namespace: tawteen
       # RESOURCE_ROOT_PATH
       root_path: /resources
 
