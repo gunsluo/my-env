@@ -27,3 +27,16 @@ mv /lib/setup/* /.modloop/
 
 setup-alpine
 ```
+
+```
+apk add iptables
+
+iptables -L -v -n
+
+iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+iptables -P INPUT DROP
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+rc-service iptables save
+rc-service iptables start
+```
