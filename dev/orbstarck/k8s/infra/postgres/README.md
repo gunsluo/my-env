@@ -7,6 +7,13 @@ psql -h 127.0.0.1 -Upostgres -f all.sql
 ```
 
 ```
+pg_dump -Fc -h 127.0.0.1 -U postgres -d sso > sso.dump
+
+pg_restore -h 127.0.0.1 -p 5432 -U postgres -d sso -v sso.dump
+```
+
+
+```
 kubectl cp ./all.sql infra/postgres-0:/all.sql 
 
 kubectl cp infra/postgres-0:/all.sql ./all.sql
