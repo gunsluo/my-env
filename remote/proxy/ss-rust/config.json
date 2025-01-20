@@ -1,0 +1,7 @@
+{
+   "method": "aes-256-gcm",
+   "password": "yourpassword",
+   "server": "0.0.0.0",
+   "server_port": 33689
+}
+
