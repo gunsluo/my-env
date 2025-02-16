@@ -94,7 +94,8 @@ return {
       -- See the full "keymap" documentation for information on defining your own keymap.
       keymap = {
         preset = "default",
-        ["<CR>"] = { "accept", "fallback" },
+        -- ["<CR>"] = { "accept", "fallback" },
+        ["<Tab>"] = { "accept", "fallback" },
         ["<Up>"] = { "select_prev", "fallback" },
         ["<Down>"] = { "select_next", "fallback" },
 
