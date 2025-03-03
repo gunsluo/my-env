@@ -68,7 +68,7 @@ acme.sh --issue --standalone -d luojis.com -k ec-256
 ```
 
 ```
-0 3 1 * * "/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /dev/null
+0 3 1 */2 * "/root/.acme.sh"/acme.sh --cron --home "/root/.acme.sh" > /dev/null
 0 4 1 * * /usr/bin/systemctl restart nginx
 ```
 
