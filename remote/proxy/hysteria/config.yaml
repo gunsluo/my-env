@@ -2,12 +2,18 @@ listen: :443
 
 acme:
   domains:
-    - domanin.com
-  email: youremail@gmail.com
+    - luojihd.com
+  email: gunsluo@gmail.com
 
 auth:
   type: password
   password: password
+
+quic:
+  initStreamReceiveWindow: 67108864
+  maxStreamReceiveWindow: 67108864
+  initConnReceiveWindow: 134217728
+  maxConnReceiveWindow: 134217728
 
 outbounds:
   - name: outbound_direct
