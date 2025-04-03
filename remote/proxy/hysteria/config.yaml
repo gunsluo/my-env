@@ -1,0 +1,21 @@
+listen: :443
+
+acme:
+  domains:
+    - domanin.com
+  email: youremail@gmail.com
+
+auth:
+  type: password
+  password: password
+
+outbounds:
+  - name: outbound_direct
+    type: direct
+
+masquerade:
+  type: file
+  file:
+    dir: /usr/share/nginx/html/
+  listenHTTPS: :443
+  forceHTTPS: true

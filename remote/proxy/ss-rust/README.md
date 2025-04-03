@@ -12,5 +12,8 @@ iptables -A INPUT -p tcp --dport 33689 -j ACCEPT
 
 iptables -L -v -n
 
+# 删除第5条
+iptables -D INPUT 5
+
 mkdir -p /etc/shadowsocks-rust
 ```
