@@ -18,6 +18,8 @@ auth:
   type: password
   password: password
 
+speedTest: true
+
 quic:
   initStreamReceiveWindow: 67108864
   maxStreamReceiveWindow: 67108864
@@ -51,16 +53,18 @@ command_args="-c \$cfgfile server"
 command_background=true
 
 depend() {
- need net
- after firewall
+  need net
+  after firewall
 }
 
 start_pre() {
   iptables -A INPUT -p tcp --dport 443 -j ACCEPT
+  iptables -A INPUT -p udp --dport 443 -j ACCEPT
 }
 
 stop_post() {
   iptables -D INPUT -p tcp --dport 443 -j ACCEPT
+  iptables -D INPUT -p udp --dport 443 -j ACCEPT
 }
 EOF
 chmod +x /etc/init.d/hysteria
