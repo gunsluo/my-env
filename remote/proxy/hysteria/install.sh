@@ -7,7 +7,7 @@ chmod +x /usr/local/bin/hysteria
 
 mkdir /etc/hysteria
 cat <<EOF >/etc/hysteria/config.yaml
-listen: :443
+listen: :33000
 
 acme:
   domains:
@@ -58,13 +58,13 @@ depend() {
 }
 
 start_pre() {
-  iptables -A INPUT -p tcp --dport 443 -j ACCEPT
-  iptables -A INPUT -p udp --dport 443 -j ACCEPT
+  iptables -t nat -A PREROUTING -i eth0 -p udp --dport 33001:33999 -j DNAT --to-destination :33000
+  ip6tables -t nat -A PREROUTING -i eth0 -p udp --dport 33001:33999 -j DNAT --to-destination :33000
 }
 
 stop_post() {
-  iptables -D INPUT -p tcp --dport 443 -j ACCEPT
-  iptables -D INPUT -p udp --dport 443 -j ACCEPT
+  iptables -t nat -D PREROUTING -i eth0 -p udp --dport 33001:33999 -j DNAT --to-destination :33000
+  ip6tables -t nat -D PREROUTING -i eth0 -p udp --dport 33001:33999 -j DNAT --to-destination :33000
 }
 EOF
 chmod +x /etc/init.d/hysteria
