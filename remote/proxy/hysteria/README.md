@@ -21,6 +21,10 @@ iptables -A INPUT -p udp --dport 443 -j ACCEPT
 iptables -D INPUT -p tcp --dport 443 -j ACCEPT
 iptables -D INPUT -p udp --dport 443 -j ACCEPT
 
+iptables -A INPUT -p udp --dport 33000 -j ACCEPT
+iptables -D INPUT -p udp --dport 33000 -j ACCEPT
+
 iptables -L -v -n
 
+iptables -t nat -L PREROUTING -n -v
 ```
