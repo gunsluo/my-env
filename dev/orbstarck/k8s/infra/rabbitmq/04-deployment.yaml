@@ -21,9 +21,15 @@ spec:
             - containerPort: 15672
             - containerPort: 61613
           volumeMounts:
+            - name: rabbitmq-config
+              mountPath: /etc/rabbitmq/conf.d/20-custom.conf
+              subPath: 20-custom.conf
             - name: rabbitmq-pvc
               mountPath: /var/lib/rabbitmq
       volumes:
+        - name: rabbitmq-config
+          configMap:
+            name: rabbitmq-config
         - name: rabbitmq-pvc
           persistentVolumeClaim:
             claimName: rabbitmq-pvc-rabbitmq-0
