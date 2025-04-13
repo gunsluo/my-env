@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sysforge
+  namespace: grassroot
+  labels:
+    svc: sysforge
+spec:
+  # type: LoadBalancer
+  ports:
+    - port: 5320
+      targetPort: 5320
+      protocol: TCP
+      name: http
+  selector:
+    app: sysforge

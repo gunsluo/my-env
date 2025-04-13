@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sysforge
+  namespace: grassroot
+spec:
+  selector:
+    matchLabels:
+      app: sysforge
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sysforge
+    spec:
+      containers:
+        - name: sysforge
+          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/sysforge:0.1.3
+          command:
+            - sysforge
+            - serve
+            - -c
+            - /usr/local/config/config.yaml
+            - all
+            - --verbose
+          ports:
+            - containerPort: 5556
+            - containerPort: 5557
+          volumeMounts:
+            - name: sysforge-config
+              mountPath: /usr/local/config/config.yaml
+              subPath: config.yaml
+      volumes:
+        - name: sysforge-config
+          configMap:
+            name: sysforge-config
+      imagePullSecrets:
+        - name: registry.gitlab.com
