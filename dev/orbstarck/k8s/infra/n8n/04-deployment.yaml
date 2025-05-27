@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: n8n
+  namespace: infra
+spec:
+  selector:
+    matchLabels:
+      app: n8n
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: n8n
+    spec:
+      containers:
+        - name: n8n
+          image: docker.n8n.io/n8nio/n8n
+          env:
+            - name: DB_TYPE
+              value: postgresdb
+            - name: DB_POSTGRESDB_DATABASE
+              value: n8n
+            - name: DB_POSTGRESDB_HOST
+              value: postgres.infra
+            - name: DB_POSTGRESDB_PORT
+              value: "5432"
+            - name: DB_POSTGRESDB_USER
+              value: "postgres"
+            - name: DB_POSTGRESDB_PASSWORD
+              value: "password"
+            - name: N8N_SECURE_COOKIE
+              value: "false"
+          ports:
+            - containerPort: 5678
+          volumeMounts:
+            - name: n8n-pvc
+              mountPath: /home/node/.n8n
+      volumes:
+        - name: n8n-pvc
+          persistentVolumeClaim:
+            claimName: n8n-pvc-n8n-0

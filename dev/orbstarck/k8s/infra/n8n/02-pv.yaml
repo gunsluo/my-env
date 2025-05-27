@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: n8n-pv
+  namespace: infra
+  labels:
+    type: local
+spec:
+  storageClassName: local-n8n-storage
+  capacity:
+    storage: 100M
+  # volumeMode field requires BlockVolume Alpha feature gate to be enabled.
+  volumeMode: Filesystem
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    # orbstack is mounted on Mac filesystem /Users/luoji/.orbstack/data/k8s
+    path: /Users/luoji/.orbstack/data/k8s/n8n
