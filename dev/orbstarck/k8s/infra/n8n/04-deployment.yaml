@@ -29,6 +29,8 @@ spec:
               value: "postgres"
             - name: DB_POSTGRESDB_PASSWORD
               value: "password"
+            - name: GENERIC_TIMEZONE
+              value: "Asia/Shanghai"
             - name: N8N_SECURE_COOKIE
               value: "false"
           ports:
