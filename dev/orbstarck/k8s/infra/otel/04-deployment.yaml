@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: otel
+  namespace: infra
+spec:
+  selector:
+    matchLabels:
+      app: otel
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: otel
+    spec:
+      containers:
+        - name: otel
+          # image: otel/opentelemetry-collector-contrib:0.133.0
+          image: grafana/otel-lgtm:0.11.9
+          ports:
+            - containerPort: 3000 # Web Ui
+            - containerPort: 4317 # OTLP gRPC receiver
+            - containerPort: 4318 # OTLP http receiver
