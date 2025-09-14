@@ -137,7 +137,7 @@ data:
       providers:
         - type: aws
           # SMS_PROVIDERS_AWS_ENABLE
-          enable: true
+          enable: false
           # SMS_PROVIDERS_AWS_CONFIG=a json string
           config:
             - region: us-east-1
@@ -166,6 +166,12 @@ data:
               from: "+447401255644"
               affinityRegion: []
               unreachableRegion: ["CN"]
+        - type: mock
+          enable: true
+          config:
+            - affinity_region: []
+              unreachable_region: []
+              reachable_region: []
       render:
         tag:
           start: "${"

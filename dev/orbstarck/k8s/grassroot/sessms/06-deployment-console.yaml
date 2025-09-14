@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: sessmsrest
-          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/sessms:2.6.5
+          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/sessms:2.7.3
           command:
             - /usr/local/bin/sender-serve
             - serve
