@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: pfgrpc
-          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/profile-be:3.2.22-tawteen-mixedmanual
+          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/profile-be:3.2.29-tawteen-mixedmanual
           command:
             - /usr/local/bin/profile-serve
             - profile
