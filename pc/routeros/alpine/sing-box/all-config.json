@@ -1,0 +1,62 @@
+{
+  "dns": {
+    "servers": [
+      {
+        "detour": "out",
+        "server": "8.8.8.8",
+        "type": "tls"
+      }
+    ]
+  },
+  "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "listen_port": 1080,
+      "type": "socks"
+    },
+    {
+      "listen": "::",
+      "listen_port": 53,
+      "network": "udp",
+      "type": "direct"
+    }
+  ],
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "outbounds": [
+    {
+      "method": "aes-256-gcm",
+      "password": "password",
+      "server": "10.10.10.10",
+      "server_port": 10000,
+      "tag": "out",
+      "type": "shadowsocks"
+    }
+  ],
+  "route": {
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "action": "hijack-dns",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
+        "type": "logical"
+      },
+      {
+        "action": "route",
+        "outbound": "out"
+      }
+    ]
+  }
+}

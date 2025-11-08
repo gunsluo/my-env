@@ -1,0 +1,108 @@
+{
+  "dns": {
+    "servers": [
+      {
+        "address": "223.5.5.5",
+        "detour": "direct",
+        "tag": "dns-cn"
+      },
+      {
+        "address": "https://1.1.1.1/dns-query",
+        "detour": "out",
+        "tag": "dns-proxy"
+      }
+    ],
+    "rules": [
+      {
+        "geosite": "cn",
+        "server": "dns-cn"
+      },
+      {
+        "server": "dns-proxy"
+      }
+    ]
+  },
+  "inbounds": [
+    {
+      "listen": "0.0.0.0",
+      "listen_port": 1080,
+      "type": "socks"
+    },
+    {
+      "listen": "::",
+      "listen_port": 53,
+      "network": "udp",
+      "type": "direct"
+    }
+  ],
+  "log": {
+    "level": "info",
+    "timestamp": true
+  },
+  "outbounds": [
+    {
+      "method": "aes-256-gcm",
+      "password": "password",
+      "server": "10.10.10.10",
+      "server_port": 10000,
+      "tag": "out",
+      "type": "shadowsocks"
+    },
+    {
+      "tag": "direct",
+      "type": "direct"
+    },
+    {
+      "tag": "block",
+      "type": "block"
+    }
+  ],
+  "route": {
+    "auto_detect_interface": true,
+    "geoip": {
+      "download_url": "https://github.com/SagerNet/sing-geoip/releases/latest/download/geoip.db",
+      "download_detour": "out"
+    },
+    "geosite": {
+      "download_url": "https://github.com/SagerNet/sing-geosite/releases/latest/download/geosite.db",
+      "download_detour": "out"
+    },
+    "rules": [
+      {
+        "action": "sniff"
+      },
+      {
+        "action": "hijack-dns",
+        "mode": "or",
+        "rules": [
+          {
+            "protocol": "dns"
+          },
+          {
+            "port": 53
+          }
+        ],
+        "type": "logical"
+      },
+      {
+        "geosite": "category-ads-all",
+        "outbound": "block"
+      },
+      {
+        "geoip": "private",
+        "outbound": "direct"
+      },
+      {
+        "geoip": "cn",
+        "outbound": "direct"
+      },
+      {
+        "geosite": "cn",
+        "outbound": "direct"
+      },
+      {
+        "outbound": "out"
+      }
+    ]
+  }
+}
