@@ -53,5 +53,6 @@ First enter the shell of the tailscale container:
 Then run:
 
 ```
-tailscale up --accept-routes --advertise-routes 192.168.100.0/24,10.10.10.0/24
+tailscale up --accept-routes --advertise-routes 192.168.88.0/24,10.10.10.0/24
+tailscale set --accept-routes --advertise-routes 192.168.88.0/24,10.10.10.0/24
 ```
