@@ -39,7 +39,7 @@ data:
         # REST_CORS_ALLOW_CREDENTIALS
         allow_credentials: true
     serve:
-      postgres_dsn: "postgres://postgres:password@postgres.infra:5432/configurator?sslmode=disable"
+      postgres_dsn: "postgres://postgres:password@postgres.infra:5432/configurator_tawteen?sslmode=disable"
       deploy_regin: ""
       ac:
         address: "acgrpc.grassroot:7001"
@@ -100,7 +100,7 @@ data:
       maxIdleConns: 50
       maxOpenConns: 1000
       connMaxLifetime: 1
-      dsn: "postgres://postgres:password@postgres.infra:5432/configurator?sslmode=disable"
+      dsn: "postgres://postgres:password@postgres.infra:5432/configurator_tawteen?sslmode=disable"
     cache:
       interval: 1
       concurrency: 3000

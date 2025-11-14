@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: configurator
-          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/configurator-be-v1:4.33.7-oia-mixedmanual
+          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/configurator-be-v1:4.35.46-tawteen-mixedmanual
           # image: registry.gitlab.com/target-digital-transformation/subscription-store:v4.33.6
           command:
             - /usr/local/bin/subscription-store
@@ -24,7 +24,7 @@ spec:
             - --grpc-address=:9301
             - --ac-grpc=acgrpc.grassroot:7001
             - --profile-grpc=pfgrpc.grassroot:5051
-            - --dsn=postgres://postgres:password@postgres.infra/configurator?sslmode=disable
+            - --dsn=postgres://postgres:password@postgres.infra/configurator_tawteen?sslmode=disable
             - --oidc=http://dex.grassroot.svc.cluster.local:5556
             - --cors-hosts=*
             - --redis-addr=redis.infra:6379

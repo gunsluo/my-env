@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: configuratorv2
-          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/configurator-be:1.2.5-oia-mixedmanual
+          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/configurator-be:3.0.80-tawteen-mixedmanual
           command:
             - /usr/local/bin/configurator-be
             - rest
