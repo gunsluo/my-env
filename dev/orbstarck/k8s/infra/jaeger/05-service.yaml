@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jaeger
+  namespace: infra
+  labels:
+    svc: jaeger
+spec:
+  # type: LoadBalancer
+  ports:
+    - port: 16686
+      targetPort: 16686
+      protocol: TCP
+      name: ui
+    - port: 4317
+      targetPort: 4317
+      protocol: TCP
+      name: grpc
+    - port: 4318
+      targetPort: 4318
+      protocol: TCP
+      name: tcp
+    - port: 14268
+      targetPort: 14268
+      protocol: TCP
+      name: http
+  selector:
+    app: jaeger

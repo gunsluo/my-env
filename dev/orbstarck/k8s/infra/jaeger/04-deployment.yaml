@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jaeger
+  namespace: infra
+spec:
+  selector:
+    matchLabels:
+      app: jaeger
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jaeger
+    spec:
+      containers:
+        - name: jaeger
+          image: cr.jaegertracing.io/jaegertracing/jaeger:2.13.0
+          ports:
+            - containerPort: 16686
+            - containerPort: 4317
+            - containerPort: 4318
+            - containerPort: 5778
+            - containerPort: 14268
+            - containerPort: 9411
