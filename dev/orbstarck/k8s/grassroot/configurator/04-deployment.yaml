@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: configurator
-          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/configurator-be-v1:4.35.46-tawteen-mixedmanual
+          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/configurator-be-v1:4.35.50-tawteen-mixedmanual
           # image: registry.gitlab.com/target-digital-transformation/subscription-store:v4.33.6
           command:
             - /usr/local/bin/subscription-store

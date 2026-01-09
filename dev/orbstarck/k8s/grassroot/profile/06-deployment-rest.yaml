@@ -15,13 +15,13 @@ spec:
     spec:
       containers:
         - name: pfrest
-          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/profile-be:3.3.2-tawteen-mixedmanual
+          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/profile-be:3.3.17-tawteen-mixedmanual
           command:
             - /usr/local/bin/profile-serve
             - profile
             - graphql
             - --address=:5052
-            - --dsn=postgres://postgres:password@postgres.infra/profile?sslmode=disable
+            - --dsn=postgres://postgres:password@postgres.infra/profile_tawteen?sslmode=disable
             - --oidc=http://dex.grassroot.svc.cluster.local:5556
             - --url-prefix=/rest
             - --ac-grpc=acgrpc.grassroot:7001

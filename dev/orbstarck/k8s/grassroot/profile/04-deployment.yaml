@@ -15,13 +15,13 @@ spec:
     spec:
       containers:
         - name: pfgrpc
-          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/profile-be:3.3.2-tawteen-mixedmanual
+          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/profile-be:3.3.17-tawteen-mixedmanual
           command:
             - /usr/local/bin/profile-serve
             - profile
             - grpc
             - --address=:5051
-            - --dsn=postgres://postgres:password@postgres.infra/profile?sslmode=disable
+            - --dsn=postgres://postgres:password@postgres.infra/profile_tawteen?sslmode=disable
             - --oidc=http://dex.grassroot.svc.cluster.local:5556
             - --sso-dex-grpc-addr=dex.grassroot:5557
             - --redis=redis.infra:6379
