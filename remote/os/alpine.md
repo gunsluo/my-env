@@ -5,9 +5,9 @@ https://wiki.alpinelinux.org/wiki/Replacing_non-Alpine_Linux_with_Alpine_remotel
 ```
 
 ```
-wget https://dl-cdn.alpinelinux.org/alpine/v3.21/releases/x86_64/alpine-virt-3.21.2-x86_64.iso
+wget https://dl-cdn.alpinelinux.org/alpine/v3.23/releases/x86_64/alpine-virt-3.23.2-x86_64.iso
 
-dd if=alpine-virt-3.21.2-x86_64.iso of=/dev/vda
+dd if=alpine-virt-3.23.2-x86_64.iso of=/dev/vda
 ```
 
 **Reboot, and login again from vnc with root.**
