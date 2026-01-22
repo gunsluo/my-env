@@ -29,14 +29,32 @@ setup-alpine
 ```
 
 ```
-apk add iptables
+using nft
+-- apk add iptables
 
-iptables -L -v -n
+-- iptables -L -v -n
 
-iptables -A INPUT -p tcp --dport 22 -j ACCEPT
-iptables -P INPUT DROP
-iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+-- iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+-- iptables -P INPUT DROP
+-- iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
-rc-service iptables save
-rc-service iptables start
+-- rc-service iptables save
+-- rc-update add iptables
+-- rc-service iptables start
+```
+
+```
+
+ZEROSSL_EAB_KID= ZEROSSL_HMAC_KEY= ./system.sh
+# modify password
+vi /etc/shadowsocks/config.json
+rc-service shadowsocks start
+
+# modify config
+vi /etc/sing-box/config.json
+rc-service sing-box start
+
+# modify config
+vi /etc/hysteria/config.json
+rc-service hysteria start
 ```
