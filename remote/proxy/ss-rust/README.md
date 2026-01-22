@@ -8,7 +8,7 @@ mv * /usr/local/bin/
 ```
 
 ```
-iptables -A INPUT -p tcp --dport 33689 -j ACCEPT
+iptables -A INPUT -p tcp --dport 42687 -j ACCEPT
 
 iptables -L -v -n
 
