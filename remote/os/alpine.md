@@ -29,7 +29,7 @@ setup-alpine
 ```
 
 ```
-using nft
+-- using nft
 -- apk add iptables
 
 -- iptables -L -v -n
