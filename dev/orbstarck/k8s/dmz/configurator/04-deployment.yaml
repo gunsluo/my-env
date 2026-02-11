@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: configurator
-          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/configurator-be-v1:4.33.7-oia-mixedmanual
+          image: registry.gitlab.com/target-digital-transformation/devops/tespkg/configurator-be-v1:4.33.11-oia-mixedmanual
           command:
             - /usr/local/bin/subscription-store
             - serve
