@@ -22,5 +22,12 @@ return {
 				"yamlls",
 			},
 		},
+		-- This is the key part that was missing:
+		config = function(_, opts)
+			require("mason-lspconfig").setup(opts)
+			-- Optional: Automatically set up servers with default config
+			-- This line is commonly added to integrate with nvim-lspconfig
+			-- require("lspconfig").setup_handlers {} -- If you have lspconfig handlers
+		end,
 	},
 }
