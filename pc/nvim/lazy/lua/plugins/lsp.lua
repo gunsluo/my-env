@@ -65,15 +65,6 @@ end
 
 return {
   {
-    "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        pyright = {},
-      },
-    },
-  },
-
-  {
     "kristijanhusak/vim-dadbod-ui",
     dependencies = {
       { "tpope/vim-dadbod",                     lazy = true },
@@ -142,6 +133,7 @@ return {
       end
 
       opts.servers = {
+        pyright = server_config(),
         gopls = server_config(),
         lua_ls = server_config(),
         yamlls = server_config(),
